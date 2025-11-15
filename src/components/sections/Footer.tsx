@@ -1,0 +1,77 @@
+export function Footer() {
+  return (
+    <footer className="bg-[#1F1F1F] text-[#EEEEEE] py-12 px-4">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h4 className="font-bold text-lg mb-4 text-[#DBA668]">OferTu</h4>
+          <p className="text-sm text-gray-400">
+            Conectando residentes con profesionales en tu zona
+          </p>
+        </div>
+        <div>
+          <h4 className="font-bold mb-4">Compañía</h4>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Sobre nosotros
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Contacto
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-bold mb-4">Usuarios</h4>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Para Residentes
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Para Profesionales
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Seguridad
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-bold mb-4">Legal</h4>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Términos de servicio
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Privacidad
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-[#DBA668]">
+                Cookies
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
+        <p>&copy; 2025 OferTu. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+  )
+}
