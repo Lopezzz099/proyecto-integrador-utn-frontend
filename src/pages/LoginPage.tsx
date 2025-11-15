@@ -7,12 +7,13 @@ import { AuthLinks } from '@/components/auth/AuthLinks'
 
 interface LoginPageProps {
   onNavigate?: (page: 'login' | 'register' | 'landing') => void
+  initialRole?: 'resident' | 'worker'
 }
 
-export function LoginPage({ onNavigate }: LoginPageProps) {
+export function LoginPage({ onNavigate, initialRole }: LoginPageProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [selectedRole, setSelectedRole] = useState<UserRole>('client')
+  const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole === 'worker' ? 'provider' : 'client')
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isLoading, setIsLoading] = useState(false)
   const { login } = useAuth()

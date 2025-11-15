@@ -14,15 +14,16 @@ import { AuthLinks } from '@/components/auth/AuthLinks'
 
 interface RegisterPageProps {
   onNavigate?: (page: 'login' | 'register' | 'landing') => void
+  initialRole?: 'resident' | 'worker'
 }
 
 interface StepErrors {
   [key: string]: string
 }
 
-export function RegisterPage({ onNavigate }: RegisterPageProps) {
+export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
   const [step, setStep] = useState(1)
-  const [selectedRole, setSelectedRole] = useState<UserRole>('client')
+  const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole === 'worker' ? 'provider' : 'client')
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',

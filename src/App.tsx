@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { LandingPageResident } from '@/components/LandingPageResident'
 import { LandingPageWorker } from '@/components/LandingPageWorker'
 import { AuthProvider, useAuth } from '@/context/AuthContext'
@@ -6,9 +6,25 @@ import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 
 function AppContent() {
-  const [currentRole, setCurrentRole] = useState<'resident' | 'worker'>('resident')
-  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register'>('landing')
+  const [currentRole, setCurrentRole] = useState<'resident' | 'worker'>(() => {
+    const savedRole = localStorage.getItem('currentRole')
+    return (savedRole as 'resident' | 'worker') || 'resident'
+  })
+  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register'>(() => {
+    const savedPage = localStorage.getItem('currentPage')
+    return (savedPage as 'landing' | 'login' | 'register') || 'landing'
+  })
   const { isAuthenticated } = useAuth()
+
+  // Guardar el rol en localStorage cada vez que cambia
+  useEffect(() => {
+    localStorage.setItem('currentRole', currentRole)
+  }, [currentRole])
+
+  // Guardar la página en localStorage cada vez que cambia
+  useEffect(() => {
+    localStorage.setItem('currentPage', currentPage)
+  }, [currentPage])
 
   if (isAuthenticated) {
     // Si está autenticado, mostrar el dashboard o página principal
@@ -29,11 +45,11 @@ function AppContent() {
   }
 
   if (currentPage === 'login') {
-    return <LoginPage onNavigate={setCurrentPage} />
+    return <LoginPage onNavigate={setCurrentPage} initialRole={currentRole} />
   }
 
   if (currentPage === 'register') {
-    return <RegisterPage onNavigate={setCurrentPage} />
+    return <RegisterPage onNavigate={setCurrentPage} initialRole={currentRole} />
   }
 
   return (

@@ -12,14 +12,6 @@ export function Header({ currentRole, onRoleChange, onNavigate }: HeaderProps) {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <div className="flex items-center gap-8">
           <h1 className="text-2xl font-bold">OferTu</h1>
-          <div className="hidden md:flex space-x-4">
-            <a href="#roles" className="hover:text-[#DBA668] transition">
-              Roles
-            </a>
-            <a href="#faq" className="hover:text-[#DBA668] transition">
-              Preguntas Frecuentes
-            </a>
-          </div>
         </div>
         
         <div className="flex items-center gap-4">

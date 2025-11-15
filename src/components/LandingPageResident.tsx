@@ -21,7 +21,7 @@ export function LandingPageResident({ onRoleChange, onNavigate }: LandingPageRes
       <BenefitsResident />
       <HowItWorks />
       <FAQ />
-      <CTASection />
+      <CTASection onNavigate={onNavigate} />
       <Footer />
     </div>
   )

@@ -23,7 +23,7 @@ export function StepNavigation({
   const isLastStep = currentStep === totalSteps
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3 mt-6">
       <Button
         type="button"
         variant="outline"
