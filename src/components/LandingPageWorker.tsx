@@ -10,7 +10,7 @@ import { Footer } from '@/components/sections/shared/Footer'
 
 interface LandingPageWorkerProps {
   onRoleChange: (role: 'resident' | 'worker') => void
-  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact') => void
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy') => void
 }
 
 export function LandingPageWorker({ onRoleChange, onNavigate }: LandingPageWorkerProps) {

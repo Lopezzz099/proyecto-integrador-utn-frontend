@@ -6,15 +6,17 @@ import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
+import { TermsPage } from './pages/TermsPage'
+import { PrivacyPage } from './pages/PrivacyPage'
 
 function AppContent() {
   const [currentRole, setCurrentRole] = useState<'resident' | 'worker'>(() => {
     const savedRole = localStorage.getItem('currentRole')
     return (savedRole as 'resident' | 'worker') || 'resident'
   })
-  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register' | 'about' | 'contact'>(() => {
+  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy'>(() => {
     const savedPage = localStorage.getItem('currentPage')
-    return (savedPage as 'landing' | 'login' | 'register' | 'about' | 'contact') || 'landing'
+    return (savedPage as 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy') || 'landing'
   })
   const { isAuthenticated } = useAuth()
 
@@ -60,6 +62,14 @@ function AppContent() {
 
   if (currentPage === 'contact') {
     return <ContactPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
+  }
+
+  if (currentPage === 'terms') {
+    return <TermsPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
+  }
+
+  if (currentPage === 'privacy') {
+    return <PrivacyPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
   }
 
   return (

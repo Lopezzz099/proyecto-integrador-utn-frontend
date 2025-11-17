@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
 interface ContactFormProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact') => void
+  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy') => void
 }
 
 export function ContactForm({ onNavigate }: ContactFormProps) {

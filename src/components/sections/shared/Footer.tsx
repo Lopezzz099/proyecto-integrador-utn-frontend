@@ -1,5 +1,5 @@
 interface FooterProps {
-  onNavigate?: (page: 'login' | 'register' | 'about' | 'contact' | 'landing') => void
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'contact' | 'landing' | 'terms' | 'privacy') => void
   onRoleChange?: (role: 'resident' | 'worker') => void
 }
 
@@ -64,14 +64,20 @@ export function Footer({ onNavigate, onRoleChange }: FooterProps) {
           <h4 className="font-bold mb-4">Legal</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
-              <a href="#" className="hover:text-[#DBA668]">
+              <button
+                onClick={() => onNavigate?.('terms')}
+                className="hover:text-[#DBA668] cursor-pointer"
+              >
                 Términos de servicio
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" className="hover:text-[#DBA668]">
+              <button
+                onClick={() => onNavigate?.('privacy')}
+                className="hover:text-[#DBA668] cursor-pointer"
+              >
                 Privacidad
-              </a>
+              </button>
             </li>
           </ul>
         </div>
