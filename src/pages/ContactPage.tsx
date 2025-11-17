@@ -26,7 +26,7 @@ export function ContactPage({ onNavigate, onRoleChange, currentRole = 'resident'
       <div className="max-w-2xl mx-auto px-4 pb-12">
         <ContactInfo />
       </div>
-      <Footer onNavigate={onNavigate} />
+      <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
     </div>
   )
 }

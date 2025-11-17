@@ -24,7 +24,7 @@ export function AboutPage({ onNavigate, onRoleChange, currentRole = 'resident' }
       <AboutStory />
       <AboutValues />
       <AboutCTA onNavigate={onNavigate} />
-      <Footer onNavigate={onNavigate} />
+      <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
     </div>
   )
 }

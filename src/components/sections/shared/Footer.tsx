@@ -1,8 +1,9 @@
 interface FooterProps {
   onNavigate?: (page: 'login' | 'register' | 'about' | 'contact' | 'landing') => void
+  onRoleChange?: (role: 'resident' | 'worker') => void
 }
 
-export function Footer({ onNavigate }: FooterProps) {
+export function Footer({ onNavigate, onRoleChange }: FooterProps) {
   return (
     <footer className="bg-[#1F1F1F] text-[#EEEEEE] py-12 px-4">
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 mb-8">
@@ -36,19 +37,26 @@ export function Footer({ onNavigate }: FooterProps) {
           <h4 className="font-bold mb-4">Usuarios</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
-              <a href="#" className="hover:text-[#DBA668]">
+              <button
+                onClick={() => {
+                  onRoleChange?.('resident')
+                  onNavigate?.('landing')
+                }}
+                className="hover:text-[#DBA668] cursor-pointer"
+              >
                 Para Residentes
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#" className="hover:text-[#DBA668]">
+              <button
+                onClick={() => {
+                  onRoleChange?.('worker')
+                  onNavigate?.('landing')
+                }}
+                className="hover:text-[#DBA668] cursor-pointer"
+              >
                 Para Profesionales
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-[#DBA668]">
-                Seguridad
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -63,11 +71,6 @@ export function Footer({ onNavigate }: FooterProps) {
             <li>
               <a href="#" className="hover:text-[#DBA668]">
                 Privacidad
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-[#DBA668]">
-                Cookies
               </a>
             </li>
           </ul>

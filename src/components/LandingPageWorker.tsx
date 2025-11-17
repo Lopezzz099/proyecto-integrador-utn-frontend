@@ -26,7 +26,7 @@ export function LandingPageWorker({ onRoleChange, onNavigate }: LandingPageWorke
       <HowItWorks />
       <FAQWorker />
       <CTASectionWorker onNavigate={onNavigate} />
-      <Footer onNavigate={onNavigate} />
+      <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
     </div>
   )
 }

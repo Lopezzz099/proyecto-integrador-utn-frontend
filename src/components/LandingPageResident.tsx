@@ -26,7 +26,7 @@ export function LandingPageResident({ onRoleChange, onNavigate }: LandingPageRes
       <HowItWorks />
       <FAQ />
       <CTASection onNavigate={onNavigate} />
-      <Footer onNavigate={onNavigate} />
+      <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
     </div>
   )
 }

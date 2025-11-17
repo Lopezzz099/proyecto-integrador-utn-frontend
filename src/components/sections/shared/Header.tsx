@@ -11,7 +11,12 @@ export function Header({ currentRole, onRoleChange, onNavigate }: HeaderProps) {
     <header className="bg-[#1F1F1F] text-[#EEEEEE] sticky top-0 z-50 shadow-lg">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <div className="flex items-center gap-8">
-          <h1 className="text-2xl font-bold">OferTu</h1>
+          <button
+            onClick={() => onNavigate?.('landing')}
+            className="text-2xl font-bold hover:text-[#DBA668] transition-colors cursor-pointer"
+          >
+            OferTu
+          </button>
         </div>
         
         <div className="flex items-center gap-4">
