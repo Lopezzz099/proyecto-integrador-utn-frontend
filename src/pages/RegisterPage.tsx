@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth, type UserRole } from '@/context/AuthContext'
 import { ZodError } from 'zod'
 import { step1Schema, step2Schema, step3ClientSchema, step3ProviderSchema, step4ProviderSchema } from '@/lib/validations'
@@ -13,7 +13,7 @@ import { Step4Content } from '@/components/auth/Step4Content'
 import { AuthLinks } from '@/components/auth/AuthLinks'
 
 interface RegisterPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing') => void
+  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact') => void
   initialRole?: 'resident' | 'worker'
 }
 
@@ -37,6 +37,10 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
   const [errors, setErrors] = useState<StepErrors>({})
   const [isLoading, setIsLoading] = useState(false)
   const { register } = useAuth()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleChange = (field: string, value: string | string[]) => {
     setFormData((prev) => ({ ...prev, [field]: value }))

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth, type UserRole } from '@/context/AuthContext'
 import { AuthContainer } from '@/components/auth/AuthContainer'
 import { RoleSelector } from '@/components/auth/RoleSelector'
@@ -6,7 +6,7 @@ import { LoginForm } from '@/components/auth/LoginForm'
 import { AuthLinks } from '@/components/auth/AuthLinks'
 
 interface LoginPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing') => void
+  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact') => void
   initialRole?: 'resident' | 'worker'
 }
 
@@ -17,6 +17,10 @@ export function LoginPage({ onNavigate, initialRole }: LoginPageProps) {
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isLoading, setIsLoading] = useState(false)
   const { login } = useAuth()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()

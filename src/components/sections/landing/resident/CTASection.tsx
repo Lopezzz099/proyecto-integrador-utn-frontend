@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 
 interface CTASectionProps {
-  onNavigate?: (page: 'login' | 'register') => void
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact') => void
 }
 
 export function CTASection({ onNavigate }: CTASectionProps) {

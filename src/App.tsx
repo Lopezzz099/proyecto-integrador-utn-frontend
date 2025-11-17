@@ -4,15 +4,17 @@ import { LandingPageWorker } from '@/components/LandingPageWorker'
 import { AuthProvider, useAuth } from '@/context/AuthContext'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
+import { AboutPage } from './pages/AboutPage'
+import { ContactPage } from './pages/ContactPage'
 
 function AppContent() {
   const [currentRole, setCurrentRole] = useState<'resident' | 'worker'>(() => {
     const savedRole = localStorage.getItem('currentRole')
     return (savedRole as 'resident' | 'worker') || 'resident'
   })
-  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register'>(() => {
+  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register' | 'about' | 'contact'>(() => {
     const savedPage = localStorage.getItem('currentPage')
-    return (savedPage as 'landing' | 'login' | 'register') || 'landing'
+    return (savedPage as 'landing' | 'login' | 'register' | 'about' | 'contact') || 'landing'
   })
   const { isAuthenticated } = useAuth()
 
@@ -50,6 +52,14 @@ function AppContent() {
 
   if (currentPage === 'register') {
     return <RegisterPage onNavigate={setCurrentPage} initialRole={currentRole} />
+  }
+
+  if (currentPage === 'about') {
+    return <AboutPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
+  }
+
+  if (currentPage === 'contact') {
+    return <ContactPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
   }
 
   return (

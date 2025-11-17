@@ -1,18 +1,22 @@
-import { Header } from '@/components/sections/Header'
-import { HeroSectionWorker } from '@/components/sections/HeroSectionWorker'
-import { AboutSectionWorker } from '@/components/sections/AboutSectionWorker'
-import { FeaturesWorker } from '@/components/sections/FeaturesWorker'
-import { HowItWorks } from '@/components/sections/HowItWorks'
-import { FAQWorker } from '@/components/sections/FAQWorker'
-import { CTASectionWorker } from '@/components/sections/CTASectionWorker'
-import { Footer } from '@/components/sections/Footer'
+import { useEffect } from 'react'
+import { Header } from '@/components/sections/shared/Header'
+import { HeroSectionWorker } from '@/components/sections/landing/worker/HeroSectionWorker'
+import { AboutSectionWorker } from '@/components/sections/landing/worker/AboutSectionWorker'
+import { FeaturesWorker } from '@/components/sections/landing/worker/FeaturesWorker'
+import { HowItWorks } from '@/components/sections/landing/resident/HowItWorks'
+import { FAQWorker } from '@/components/sections/landing/worker/FAQWorker'
+import { CTASectionWorker } from '@/components/sections/landing/worker/CTASectionWorker'
+import { Footer } from '@/components/sections/shared/Footer'
 
 interface LandingPageWorkerProps {
   onRoleChange: (role: 'resident' | 'worker') => void
-  onNavigate?: (page: 'login' | 'register') => void
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact') => void
 }
 
 export function LandingPageWorker({ onRoleChange, onNavigate }: LandingPageWorkerProps) {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="w-full bg-[#EEEEEE] text-[#1F1F1F]">
       <Header currentRole="worker" onRoleChange={onRoleChange} onNavigate={onNavigate} />
@@ -22,7 +26,7 @@ export function LandingPageWorker({ onRoleChange, onNavigate }: LandingPageWorke
       <HowItWorks />
       <FAQWorker />
       <CTASectionWorker onNavigate={onNavigate} />
-      <Footer />
+      <Footer onNavigate={onNavigate} />
     </div>
   )
 }

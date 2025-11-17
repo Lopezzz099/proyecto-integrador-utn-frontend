@@ -1,4 +1,8 @@
-export function Footer() {
+interface FooterProps {
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'contact' | 'landing') => void
+}
+
+export function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-[#1F1F1F] text-[#EEEEEE] py-12 px-4">
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 mb-8">
@@ -12,9 +16,9 @@ export function Footer() {
           <h4 className="font-bold mb-4">Compañía</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
-              <a href="#" className="hover:text-[#DBA668]">
+              <button onClick={() => onNavigate?.('about')} className="hover:text-[#DBA668] cursor-pointer">
                 Sobre nosotros
-              </a>
+              </button>
             </li>
             <li>
               <a href="#" className="hover:text-[#DBA668]">
@@ -22,9 +26,9 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-[#DBA668]">
+              <button onClick={() => onNavigate?.('contact')} className="hover:text-[#DBA668] cursor-pointer">
                 Contacto
-              </a>
+              </button>
             </li>
           </ul>
         </div>
