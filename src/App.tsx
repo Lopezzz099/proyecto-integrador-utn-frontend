@@ -10,6 +10,8 @@ import { TermsPage } from './pages/TermsPage'
 import { PrivacyPage } from './pages/PrivacyPage'
 import { BlogPage } from './pages/BlogPage'
 import { BlogDetailPage } from './pages/BlogDetailPage'
+import { DashboardPage } from './pages/DashboardPage'
+import { WorkerDashboardPage } from './pages/WorkerDashboardPage'
 
 function AppContent() {
   const [currentRole, setCurrentRole] = useState<'resident' | 'worker'>(() => {
@@ -21,7 +23,7 @@ function AppContent() {
     return (savedPage as 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') || 'landing'
   })
   const [selectedBlogId, setSelectedBlogId] = useState<number | null>(null)
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, user } = useAuth()
 
   // Guardar el rol en localStorage cada vez que cambia
   useEffect(() => {
@@ -33,22 +35,23 @@ function AppContent() {
     localStorage.setItem('currentPage', currentPage)
   }, [currentPage])
 
-  if (isAuthenticated) {
-    // Si está autenticado, mostrar el dashboard o página principal
-    return (
-      <div className="min-h-screen bg-[#EEEEEE] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-[#1F1F1F] mb-4">¡Bienvenido!</h1>
-          <p className="text-gray-600 mb-8">Dashboard en construcción</p>
-          <button
-            onClick={() => setCurrentPage('landing')}
-            className="bg-[#DBA668] hover:bg-[#c89555] text-[#1F1F1F] font-bold px-6 py-3 rounded-lg"
-          >
-            Volver al inicio
-          </button>
-        </div>
-      </div>
-    )
+  if (isAuthenticated && user) {
+    // Mostrar el dashboard según el rol del usuario
+    if (user.role === 'provider') {
+      // Dashboard del trabajador
+      return <WorkerDashboardPage onNavigate={(page) => {
+        if (page === 'landing') {
+          setCurrentPage('landing')
+        }
+      }} />
+    } else {
+      // Dashboard del cliente
+      return <DashboardPage onNavigate={(page) => {
+        if (page === 'landing') {
+          setCurrentPage('landing')
+        }
+      }} />
+    }
   }
 
   if (currentPage === 'login') {

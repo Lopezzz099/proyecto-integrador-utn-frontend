@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 
 interface HeaderProps {
   currentRole: 'resident' | 'worker'
-  onRoleChange: (role: 'resident' | 'worker') => void
+  onRoleChange?: (role: 'resident' | 'worker') => void
   onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
@@ -22,7 +22,7 @@ export function Header({ currentRole, onRoleChange, onNavigate }: HeaderProps) {
         <div className="flex items-center gap-4">
           {/* Botón para cambiar de vista */}
           <Button
-            onClick={() => onRoleChange(currentRole === 'resident' ? 'worker' : 'resident')}
+            onClick={() => onRoleChange?.(currentRole === 'resident' ? 'worker' : 'resident')}
             variant="outline"
             className="hidden sm:block border-[#DBA668] text-[#DBA668] hover:bg-[#DBA668] hover:text-[#1F1F1F]"
           >

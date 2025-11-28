@@ -23,7 +23,11 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(() => {
+    // NO cargar usuario desde localStorage al iniciar
+    // El usuario debe hacer login cada vez
+    return null
+  })
 
   const login = (email: string, _password: string, role: UserRole) => {
     // Simulación de login (en producción sería una llamada API)
