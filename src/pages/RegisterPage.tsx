@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth, type UserRole } from '@/context/AuthContext'
 import { ZodError } from 'zod'
 import { step1Schema, step2Schema, step3ClientSchema, step3ProviderSchema, step4ProviderSchema } from '@/lib/validations'
@@ -13,7 +14,6 @@ import { Step4Content } from '@/components/auth/Step4Content'
 import { AuthLinks } from '@/components/auth/AuthLinks'
 
 interface RegisterPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact') => void
   initialRole?: 'resident' | 'worker'
 }
 
@@ -21,7 +21,7 @@ interface StepErrors {
   [key: string]: string
 }
 
-export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
+export function RegisterPage({ initialRole }: RegisterPageProps) {
   const [step, setStep] = useState(1)
   const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole === 'worker' ? 'provider' : 'client')
   const [formData, setFormData] = useState({
@@ -29,7 +29,10 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
     lastName: '',
     email: '',
     phone: '',
-    location: '',
+    municipio: '',
+    municipioId: '',
+    localidad: '',
+    localidadId: '',
     skills: [] as string[],
     password: '',
     confirmPassword: '',
@@ -37,6 +40,7 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
   const [errors, setErrors] = useState<StepErrors>({})
   const [isLoading, setIsLoading] = useState(false)
   const { register } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -69,7 +73,8 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
         case 2:
           step2Schema.parse({
             phone: formData.phone,
-            location: formData.location,
+            municipio: formData.municipio,
+            localidad: formData.localidad,
           })
           break
         case 3:
@@ -140,8 +145,8 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
         condiciones: '1',
         rol_id: selectedRole === 'provider' ? 3 : 2,
         ubicacion: {
-          zona: formData.location.split(',')[0]?.trim() || formData.location,
-          ciudad: formData.location.split(',')[1]?.trim() || 'Buenos Aires',
+          zona: formData.municipio,
+          ciudad: formData.localidad,
         },
       }
 
@@ -156,11 +161,8 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
       }
 
       await register(registerData)
-      
-      // Redirigir al dashboard correspondiente después del registro exitoso
-      if (onNavigate) {
-        // El AuthContext ya redirige automáticamente después del login
-      }
+      // Redirigir al dashboard después del registro exitoso
+      navigate('/dashboard')
     } catch (error: any) {
       setErrors({
         general: error.message || 'Error al registrar usuario',
@@ -177,7 +179,7 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
       return !formData.name || !formData.lastName || !formData.email
     }
     if (step === 2) {
-      return !formData.location
+      return !formData.municipio || !formData.localidad
     }
     if (step === 3) {
       if (selectedRole === 'provider') {
@@ -212,10 +214,20 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
       {step === 2 && (
         <Step2Content
           phone={formData.phone}
-          location={formData.location}
+          municipio={formData.municipio}
+          municipioId={formData.municipioId}
+          localidad={formData.localidad}
+          localidadId={formData.localidadId}
           selectedRole={selectedRole}
           onPhoneChange={(value) => handleChange('phone', value)}
-          onLocationChange={(value) => handleChange('location', value)}
+          onMunicipioChange={(municipio, municipioId) => {
+            handleChange('municipio', municipio)
+            handleChange('municipioId', municipioId)
+          }}
+          onLocalidadChange={(localidad, localidadId) => {
+            handleChange('localidad', localidad)
+            handleChange('localidadId', localidadId)
+          }}
           errors={errors}
         />
       )}
@@ -253,7 +265,7 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
         isLoading={isLoading}
       />
 
-      <AuthLinks onNavigate={onNavigate || (() => {})} type="register" />
+      <AuthLinks type="register" />
     </AuthContainer>
   )
 }

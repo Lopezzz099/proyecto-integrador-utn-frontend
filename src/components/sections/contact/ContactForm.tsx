@@ -1,11 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
-interface ContactFormProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
-}
-
-export function ContactForm({ onNavigate }: ContactFormProps) {
+export function ContactForm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -210,7 +208,7 @@ export function ContactForm({ onNavigate }: ContactFormProps) {
             </Button>
             <Button
               type="button"
-              onClick={() => onNavigate?.('landing')}
+              onClick={() => navigate('/')}
               className="flex-1 bg-gray-300 hover:bg-gray-400 text-[#1F1F1F] font-bold px-8 py-3 text-lg"
             >
               Volver

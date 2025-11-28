@@ -1,11 +1,13 @@
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
 interface BlogDetailContentProps {
   content: string
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
-export function BlogDetailContent({ content, onNavigate }: BlogDetailContentProps) {
+export function BlogDetailContent({ content }: BlogDetailContentProps) {
+  const navigate = useNavigate()
+
   return (
     <section className="py-20 px-4 bg-[#EEEEEE]">
       <div className="max-w-4xl mx-auto">
@@ -30,13 +32,13 @@ export function BlogDetailContent({ content, onNavigate }: BlogDetailContentProp
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
-              onClick={() => onNavigate?.('contact')}
+              onClick={() => navigate('/contact')}
               className="bg-[#DBA668] hover:bg-[#c89555] text-[#1F1F1F] font-bold px-8 py-3 text-lg"
             >
               Enviar mi artículo
             </Button>
             <Button
-              onClick={() => onNavigate?.('blog')}
+              onClick={() => navigate('/blog')}
               className="bg-gray-300 hover:bg-gray-400 text-[#1F1F1F] font-bold px-8 py-3 text-lg"
             >
               Ver más artículos

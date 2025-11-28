@@ -1,13 +1,14 @@
+import { useNavigate } from 'react-router-dom'
 import { Home, MessageSquare, Settings, LogOut, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
-  onNavigate?: (page: 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
-export function DashboardLayout({ children, onNavigate }: DashboardLayoutProps) {
+export function DashboardLayout({ children }: DashboardLayoutProps) {
+  const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -30,7 +31,7 @@ export function DashboardLayout({ children, onNavigate }: DashboardLayoutProps) 
               variant="ghost"
               size="sm"
               className="text-white hover:text-[#DBA668]"
-              onClick={() => onNavigate?.('landing')}
+              onClick={() => navigate('/')}
             >
               <LogOut className="w-5 h-5" />
             </Button>

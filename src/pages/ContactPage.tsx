@@ -7,26 +7,25 @@ import { ContactForm } from '@/components/sections/contact/ContactForm'
 import { ContactInfo } from '@/components/sections/contact/ContactInfo'
 
 interface ContactPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
   onRoleChange?: (role: 'resident' | 'worker') => void
   currentRole?: 'resident' | 'worker'
 }
 
-export function ContactPage({ onNavigate, onRoleChange, currentRole = 'resident' }: ContactPageProps) {
+export function ContactPage({ onRoleChange, currentRole = 'resident' }: ContactPageProps) {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   return (
     <div className="min-h-screen bg-[#EEEEEE]">
-      <Header currentRole={currentRole} onRoleChange={onRoleChange || (() => {})} onNavigate={onNavigate} />
+      <Header currentRole={currentRole} onRoleChange={onRoleChange || (() => {})} />
       <ContactHero />
       <ContactIntro />
-      <ContactForm onNavigate={onNavigate} />
+      <ContactForm />
       <div className="max-w-2xl mx-auto px-4 pb-12">
         <ContactInfo />
       </div>
-      <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
+      <Footer onRoleChange={onRoleChange} />
     </div>
   )
 }

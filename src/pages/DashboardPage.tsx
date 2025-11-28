@@ -9,15 +9,11 @@ import { getUserById } from '@/services/userService'
 import type { ProfesionalData, User } from '@/services/types'
 import { SlidersHorizontal } from 'lucide-react'
 
-interface DashboardPageProps {
-  onNavigate?: (page: 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
-}
-
 interface WorkerWithUser extends ProfesionalData {
   user?: User
 }
 
-export function DashboardPage({ onNavigate }: DashboardPageProps) {
+export function DashboardPage() {
   // Estados de búsqueda y filtros
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Todos')
@@ -152,7 +148,7 @@ export function DashboardPage({ onNavigate }: DashboardPageProps) {
   }
 
   return (
-    <DashboardLayout onNavigate={onNavigate}>
+    <DashboardLayout>
       <div className="max-w-7xl mx-auto">
         {/* Header de la página */}
         <div className="mb-8">

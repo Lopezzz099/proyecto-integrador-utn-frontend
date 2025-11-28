@@ -10,7 +10,8 @@ export const step1Schema = z.object({
 // Esquema de validación para el paso 2
 export const step2Schema = z.object({
   phone: z.string().min(7, 'El teléfono debe tener al menos 7 caracteres').optional().or(z.literal('')),
-  location: z.string().min(2, 'La ubicación debe tener al menos 2 caracteres'),
+  municipio: z.string().min(2, 'Debes seleccionar un municipio'),
+  localidad: z.string().min(2, 'Debes seleccionar una localidad'),
 })
 
 // Esquema de validación para el paso 3 (clientes - contraseña, proveedores - skills)

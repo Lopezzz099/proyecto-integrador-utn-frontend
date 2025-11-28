@@ -10,23 +10,22 @@ import { Footer } from '@/components/sections/shared/Footer'
 
 interface LandingPageResidentProps {
   onRoleChange?: (role: 'resident' | 'worker') => void
-  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
-export function LandingPageResident({ onRoleChange, onNavigate }: LandingPageResidentProps) {
+export function LandingPageResident({ onRoleChange }: LandingPageResidentProps) {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
   return (
     <div className="w-full bg-[#EEEEEE] text-[#1F1F1F]">
-      <Header currentRole="resident" onRoleChange={onRoleChange} onNavigate={onNavigate} />
-      <HeroSection onNavigate={onNavigate} onRoleChange={onRoleChange} />
+      <Header currentRole="resident" onRoleChange={onRoleChange} />
+      <HeroSection onRoleChange={onRoleChange} />
       <AboutSection />
       <BenefitsResident />
       <HowItWorks />
       <FAQ />
-      <CTASection onNavigate={onNavigate} />
-      <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
+      <CTASection />
+      <Footer onRoleChange={onRoleChange} />
     </div>
   )
 }

@@ -8,11 +8,7 @@ import { Edit, Eye } from 'lucide-react'
 import { workerProfile as initialProfile } from '@/data/workerProfileData'
 import type { WorkerProfile } from '@/data/workerProfileData'
 
-interface WorkerDashboardPageProps {
-  onNavigate?: (page: 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
-}
-
-export function WorkerDashboardPage({ onNavigate }: WorkerDashboardPageProps) {
+export function WorkerDashboardPage() {
   const [profile, setProfile] = useState<WorkerProfile>(initialProfile)
   const [isEditing, setIsEditing] = useState(false)
 
@@ -28,7 +24,7 @@ export function WorkerDashboardPage({ onNavigate }: WorkerDashboardPageProps) {
   }
 
   return (
-    <DashboardLayout onNavigate={onNavigate}>
+    <DashboardLayout>
       <div className="max-w-6xl mx-auto">
         {/* Header con botón de edición */}
         <div className="flex items-center justify-between mb-6">

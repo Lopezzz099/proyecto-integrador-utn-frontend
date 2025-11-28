@@ -1,10 +1,8 @@
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
-interface TermsContentProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
-}
-
-export function TermsContent({ onNavigate }: TermsContentProps) {
+export function TermsContent() {
+  const navigate = useNavigate()
   return (
     <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
@@ -100,7 +98,7 @@ export function TermsContent({ onNavigate }: TermsContentProps) {
             Si tienes preguntas sobre estos Términos de Servicio, por favor contacta con nosotros a través de nuestra página de contacto.
           </p>
           <Button
-            onClick={() => onNavigate?.('contact')}
+            onClick={() => navigate('/contact')}
             className="bg-[#DBA668] hover:bg-[#c89555] text-[#1F1F1F] font-bold px-8 py-3 text-lg"
           >
             Contáctanos

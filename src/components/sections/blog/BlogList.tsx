@@ -1,12 +1,9 @@
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { blogPosts } from '@/data/blogData'
 
-interface BlogListProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
-  onBlogSelect?: (blogId: number) => void
-}
-
-export function BlogList({ onNavigate, onBlogSelect }: BlogListProps) {
+export function BlogList() {
+  const navigate = useNavigate()
   return (
     <section className="py-20 px-4 bg-[#EEEEEE]">
       <div className="max-w-6xl mx-auto">
@@ -18,7 +15,7 @@ export function BlogList({ onNavigate, onBlogSelect }: BlogListProps) {
             >
               {/* Image */}
               <div 
-                onClick={() => onBlogSelect?.(post.id)}
+                onClick={() => navigate(`/blog/${post.id}`)}
                 className="w-full h-48 bg-gray-300 overflow-hidden cursor-pointer"
               >
                 <img
@@ -39,7 +36,7 @@ export function BlogList({ onNavigate, onBlogSelect }: BlogListProps) {
 
                 {/* Title */}
                 <h3 
-                  onClick={() => onBlogSelect?.(post.id)}
+                  onClick={() => navigate(`/blog/${post.id}`)}
                   className="text-xl font-bold text-[#1F1F1F] mb-3 line-clamp-2 hover:text-[#DBA668] cursor-pointer transition-colors"
                 >
                   {post.title}
@@ -58,7 +55,7 @@ export function BlogList({ onNavigate, onBlogSelect }: BlogListProps) {
 
                 {/* Read More Button */}
                 <Button
-                  onClick={() => onBlogSelect?.(post.id)}
+                  onClick={() => navigate(`/blog/${post.id}`)}
                   className="w-full bg-[#1F1F1F] hover:bg-[#DBA668] text-[#EEEEEE] hover:text-[#1F1F1F] font-bold py-2"
                 >
                   Leer más
@@ -71,7 +68,7 @@ export function BlogList({ onNavigate, onBlogSelect }: BlogListProps) {
         {/* Load More Button */}
         <div className="mt-16 text-center">
           <Button
-            onClick={() => onNavigate?.('contact')}
+            onClick={() => navigate('/contact')}
             className="bg-[#DBA668] hover:bg-[#c89555] text-[#1F1F1F] font-bold px-12 py-3 text-lg"
           >
             ¿Tienes una historia para compartir?

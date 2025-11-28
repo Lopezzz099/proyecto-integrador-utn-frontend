@@ -1,22 +1,38 @@
+import { useState } from 'react'
 import { AlertCircle } from 'lucide-react'
+import { AutocompleteInput } from '@/components/ui/AutocompleteInput'
+import { searchMunicipios, searchLocalidades } from '@/services/georefService'
+import type { Municipio } from '@/services/georefService'
 
 interface Step2ContentProps {
   phone: string
-  location: string
+  municipio: string
+  municipioId: string
+  localidad: string
+  localidadId: string
   selectedRole: 'client' | 'provider'
   onPhoneChange: (phone: string) => void
-  onLocationChange: (location: string) => void
+  onMunicipioChange: (municipio: string, municipioId: string) => void
+  onLocalidadChange: (localidad: string, localidadId: string) => void
   errors: { [key: string]: string }
 }
 
 export function Step2Content({
   phone,
-  location,
+  municipio,
+  municipioId,
+  localidad,
+  localidadId,
   selectedRole,
   onPhoneChange,
-  onLocationChange,
+  onMunicipioChange,
+  onLocalidadChange,
   errors,
 }: Step2ContentProps) {
+  const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(
+    municipioId ? { id: municipioId, nombre: municipio } : null
+  )
+
   const renderErrorMessage = (fieldName: string) => {
     if (errors[fieldName]) {
       return (
@@ -27,6 +43,25 @@ export function Step2Content({
       )
     }
     return null
+  }
+
+  const handleMunicipioSelect = (option: { id: string; nombre: string } | null) => {
+    if (option) {
+      setSelectedMunicipio({ id: option.id, nombre: option.nombre })
+      onMunicipioChange(option.nombre, option.id)
+    } else {
+      setSelectedMunicipio(null)
+      onMunicipioChange('', '')
+      onLocalidadChange('', '')
+    }
+  }
+
+  const handleLocalidadSelect = (option: { id: string; nombre: string } | null) => {
+    if (option) {
+      onLocalidadChange(option.nombre, option.id)
+    } else {
+      onLocalidadChange('', '')
+    }
   }
 
   return (
@@ -49,23 +84,41 @@ export function Step2Content({
         {renderErrorMessage('phone')}
       </div>
 
-      <div>
-        <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
-          {selectedRole === 'client' ? 'Barrio / Zona' : 'Zona de Cobertura'}
-        </label>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => onLocationChange(e.target.value)}
-          placeholder={selectedRole === 'client' ? 'Ej: Caballito' : 'Ej: CABA, Buenos Aires'}
-          className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
-            errors.location
-              ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-              : 'border-gray-300 focus:border-[#DBA668] focus:ring-[#DBA668]/20'
-          }`}
-        />
-        {renderErrorMessage('location')}
-      </div>
+      {/* Municipio */}
+      <AutocompleteInput
+        label={selectedRole === 'client' ? 'Municipio' : 'Municipio de Cobertura'}
+        value={municipio}
+        placeholder="Ej: La Plata, San Isidro, Tigre..."
+        error={errors.municipio}
+        onSearch={searchMunicipios}
+        onSelect={handleMunicipioSelect}
+        selectedId={municipioId}
+      />
+
+      {/* Localidad - solo se habilita si hay municipio seleccionado */}
+      <AutocompleteInput
+        label={selectedRole === 'client' ? 'Localidad' : 'Localidad de Cobertura'}
+        value={localidad}
+        placeholder={
+          selectedMunicipio
+            ? 'Ej: City Bell, Casco Urbano...'
+            : 'Primero selecciona un municipio'
+        }
+        error={errors.localidad}
+        disabled={!selectedMunicipio}
+        onSearch={(query) =>
+          selectedMunicipio ? searchLocalidades(selectedMunicipio.id, query) : Promise.resolve([])
+        }
+        onSelect={handleLocalidadSelect}
+        selectedId={localidadId}
+      />
+
+      {!selectedMunicipio && localidad && (
+        <p className="text-amber-600 text-xs flex items-center gap-1">
+          <AlertCircle className="w-3 h-3" />
+          Debes seleccionar primero un municipio
+        </p>
+      )}
     </div>
   )
 }

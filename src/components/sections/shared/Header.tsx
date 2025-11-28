@@ -1,18 +1,20 @@
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
 interface HeaderProps {
   currentRole: 'resident' | 'worker'
   onRoleChange?: (role: 'resident' | 'worker') => void
-  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
-export function Header({ currentRole, onRoleChange, onNavigate }: HeaderProps) {
+export function Header({ currentRole, onRoleChange }: HeaderProps) {
+  const navigate = useNavigate()
+
   return (
     <header className="bg-[#1F1F1F] text-[#EEEEEE] sticky top-0 z-50 shadow-lg">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <div className="flex items-center gap-8">
           <button
-            onClick={() => onNavigate?.('landing')}
+            onClick={() => navigate('/')}
             className="text-2xl font-bold hover:text-[#DBA668] transition-colors cursor-pointer"
           >
             OferTu
@@ -33,13 +35,13 @@ export function Header({ currentRole, onRoleChange, onNavigate }: HeaderProps) {
           <Button
             variant="ghost"
             className="text-[#EEEEEE] hover:text-[#DBA668]"
-            onClick={() => onNavigate?.('login')}
+            onClick={() => navigate('/login')}
           >
             Iniciar sesión
           </Button>
           <Button
             className="bg-[#DBA668] hover:bg-[#c89555] text-[#1F1F1F] font-bold"
-            onClick={() => onNavigate?.('register')}
+            onClick={() => navigate('/register')}
           >
             Registrarse
           </Button>

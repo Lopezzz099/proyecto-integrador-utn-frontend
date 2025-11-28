@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { LandingPageResident } from '@/components/LandingPageResident'
 import { LandingPageWorker } from '@/components/LandingPageWorker'
 import { AuthProvider, useAuth } from '@/context/AuthContext'
@@ -18,11 +19,6 @@ function AppContent() {
     const savedRole = localStorage.getItem('currentRole')
     return (savedRole as 'resident' | 'worker') || 'resident'
   })
-  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog'>(() => {
-    const savedPage = localStorage.getItem('currentPage')
-    return (savedPage as 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') || 'landing'
-  })
-  const [selectedBlogId, setSelectedBlogId] = useState<number | null>(null)
   const { isAuthenticated, user } = useAuth()
 
   // Guardar el rol en localStorage cada vez que cambia
@@ -30,87 +26,49 @@ function AppContent() {
     localStorage.setItem('currentRole', currentRole)
   }, [currentRole])
 
-  // Guardar la página en localStorage cada vez que cambia
-  useEffect(() => {
-    localStorage.setItem('currentPage', currentPage)
-  }, [currentPage])
-
-  if (isAuthenticated && user) {
-    // Mostrar el dashboard según el rol del usuario
-    if (user.rol_id === 3) {
-      // Dashboard del trabajador (rol_id: 3)
-      return <WorkerDashboardPage onNavigate={(page) => {
-        if (page === 'landing') {
-          setCurrentPage('landing')
-        }
-      }} />
-    } else {
-      // Dashboard del cliente (rol_id: 2)
-      return <DashboardPage onNavigate={(page) => {
-        if (page === 'landing') {
-          setCurrentPage('landing')
-        }
-      }} />
-    }
-  }
-
-  if (currentPage === 'login') {
-    return <LoginPage onNavigate={setCurrentPage} initialRole={currentRole} />
-  }
-
-  if (currentPage === 'register') {
-    return <RegisterPage onNavigate={setCurrentPage} initialRole={currentRole} />
-  }
-
-  if (currentPage === 'about') {
-    return <AboutPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
-  }
-
-  if (currentPage === 'contact') {
-    return <ContactPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
-  }
-
-  if (currentPage === 'terms') {
-    return <TermsPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
-  }
-
-  if (currentPage === 'privacy') {
-    return <PrivacyPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
-  }
-
-  if (currentPage === 'blog') {
-    // Si hay un blog seleccionado, mostrar el detalle
-    if (selectedBlogId !== null) {
-      return <BlogDetailPage blogId={selectedBlogId} onNavigate={(page) => {
-        setSelectedBlogId(null)
-        setCurrentPage(page)
-      }} onRoleChange={setCurrentRole} currentRole={currentRole} />
-    }
-    
-    // Si no, mostrar la lista de blogs
-    return <BlogPage 
-      onNavigate={setCurrentPage} 
-      onRoleChange={setCurrentRole} 
-      onBlogSelect={setSelectedBlogId}
-      currentRole={currentRole} 
-    />
-  }
-
   return (
-    <>
-      {currentRole === 'resident' ? (
-        <LandingPageResident onRoleChange={setCurrentRole} onNavigate={setCurrentPage} />
-      ) : (
-        <LandingPageWorker onRoleChange={setCurrentRole} onNavigate={setCurrentPage} />
-      )}
-    </>
+    <Routes>
+      {/* Rutas públicas */}
+      <Route 
+        path="/" 
+        element={
+          currentRole === 'resident' ? (
+            <LandingPageResident onRoleChange={setCurrentRole} />
+          ) : (
+            <LandingPageWorker onRoleChange={setCurrentRole} />
+          )
+        } 
+      />
+      <Route path="/login" element={<LoginPage initialRole={currentRole} />} />
+      <Route path="/register" element={<RegisterPage initialRole={currentRole} />} />
+      <Route path="/about" element={<AboutPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
+      <Route path="/contact" element={<ContactPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
+      <Route path="/terms" element={<TermsPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
+      <Route path="/privacy" element={<PrivacyPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
+      <Route path="/blog" element={<BlogPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
+      <Route path="/blog/:id" element={<BlogDetailPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
+
+      {/* Rutas protegidas */}
+      <Route 
+        path="/dashboard" 
+        element={
+          isAuthenticated && user ? (
+            user.rol_id === 3 ? <WorkerDashboardPage /> : <DashboardPage />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        } 
+      />
+    </Routes>
   )
 }
 
 function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
     </AuthProvider>
   )
 }

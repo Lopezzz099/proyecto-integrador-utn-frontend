@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router-dom'
+
 interface AuthLinksProps {
-  onNavigate: (page: 'login' | 'register' | 'landing') => void
   type: 'login' | 'register'
 }
 
-export function AuthLinks({ onNavigate, type }: AuthLinksProps) {
+export function AuthLinks({ type }: AuthLinksProps) {
+  const navigate = useNavigate()
+
   return (
     <div className="mt-6 pt-6 border-t border-gray-200 space-y-2 text-center text-sm text-gray-600">
       {type === 'login' ? (
@@ -11,7 +14,7 @@ export function AuthLinks({ onNavigate, type }: AuthLinksProps) {
           <p>
             ¿No tienes cuenta?{' '}
             <button
-              onClick={() => onNavigate('register')}
+              onClick={() => navigate('/register')}
               className="text-[#DBA668] font-semibold hover:underline"
             >
               Regístrate
@@ -23,7 +26,7 @@ export function AuthLinks({ onNavigate, type }: AuthLinksProps) {
           <p>
             ¿Ya tienes cuenta?{' '}
             <button
-              onClick={() => onNavigate('login')}
+              onClick={() => navigate('/login')}
               className="text-[#DBA668] font-semibold hover:underline"
             >
               Inicia sesión
@@ -33,7 +36,7 @@ export function AuthLinks({ onNavigate, type }: AuthLinksProps) {
       )}
       <p>
         <button
-          onClick={() => onNavigate('landing')}
+          onClick={() => navigate('/')}
           className="text-[#DBA668] font-semibold hover:underline"
         >
           ← Volver al inicio

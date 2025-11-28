@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth, type UserRole } from '@/context/AuthContext'
 import { AuthContainer } from '@/components/auth/AuthContainer'
 import { RoleSelector } from '@/components/auth/RoleSelector'
@@ -6,17 +7,17 @@ import { LoginForm } from '@/components/auth/LoginForm'
 import { AuthLinks } from '@/components/auth/AuthLinks'
 
 interface LoginPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact') => void
   initialRole?: 'resident' | 'worker'
 }
 
-export function LoginPage({ onNavigate, initialRole }: LoginPageProps) {
+export function LoginPage({ initialRole }: LoginPageProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [selectedRole, setSelectedRole] = useState<UserRole>(initialRole === 'worker' ? 'provider' : 'client')
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isLoading, setIsLoading] = useState(false)
   const { login } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -39,7 +40,8 @@ export function LoginPage({ onNavigate, initialRole }: LoginPageProps) {
 
     try {
       await login(email, password)
-      // Si el login fue exitoso, el context maneja la navegación
+      // Redirigir al dashboard después del login exitoso
+      navigate('/dashboard')
     } catch (error: any) {
       setErrors({
         general: error.message || 'Credenciales inválidas. Intenta de nuevo.',
@@ -77,7 +79,7 @@ export function LoginPage({ onNavigate, initialRole }: LoginPageProps) {
         <p className="text-xs text-blue-700">Contraseña: demo123</p>
       </div>
 
-      <AuthLinks onNavigate={onNavigate || (() => {})} type="login" />
+      <AuthLinks type="login" />
     </AuthContainer>
   )
 }

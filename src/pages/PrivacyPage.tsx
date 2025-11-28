@@ -5,22 +5,21 @@ import { PrivacyHero } from '@/components/sections/landing/resident/PrivacyHero'
 import { PrivacyContent } from '@/components/sections/landing/resident/PrivacyContent'
 
 interface PrivacyPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
   onRoleChange?: (role: 'resident' | 'worker') => void
   currentRole?: 'resident' | 'worker'
 }
 
-export function PrivacyPage({ onNavigate, onRoleChange, currentRole = 'resident' }: PrivacyPageProps) {
+export function PrivacyPage({ onRoleChange, currentRole = 'resident' }: PrivacyPageProps) {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   return (
     <div className="min-h-screen bg-[#EEEEEE]">
-      <Header currentRole={currentRole} onRoleChange={onRoleChange || (() => {})} onNavigate={onNavigate} />
+      <Header currentRole={currentRole} onRoleChange={onRoleChange || (() => {})} />
       <PrivacyHero />
-      <PrivacyContent onNavigate={onNavigate} />
-      <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
+      <PrivacyContent />
+      <Footer onRoleChange={onRoleChange} />
     </div>
   )
 }
