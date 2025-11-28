@@ -8,16 +8,19 @@ import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
 import { TermsPage } from './pages/TermsPage'
 import { PrivacyPage } from './pages/PrivacyPage'
+import { BlogPage } from './pages/BlogPage'
+import { BlogDetailPage } from './pages/BlogDetailPage'
 
 function AppContent() {
   const [currentRole, setCurrentRole] = useState<'resident' | 'worker'>(() => {
     const savedRole = localStorage.getItem('currentRole')
     return (savedRole as 'resident' | 'worker') || 'resident'
   })
-  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy'>(() => {
+  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog'>(() => {
     const savedPage = localStorage.getItem('currentPage')
-    return (savedPage as 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy') || 'landing'
+    return (savedPage as 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') || 'landing'
   })
+  const [selectedBlogId, setSelectedBlogId] = useState<number | null>(null)
   const { isAuthenticated } = useAuth()
 
   // Guardar el rol en localStorage cada vez que cambia
@@ -70,6 +73,24 @@ function AppContent() {
 
   if (currentPage === 'privacy') {
     return <PrivacyPage onNavigate={setCurrentPage} onRoleChange={setCurrentRole} currentRole={currentRole} />
+  }
+
+  if (currentPage === 'blog') {
+    // Si hay un blog seleccionado, mostrar el detalle
+    if (selectedBlogId !== null) {
+      return <BlogDetailPage blogId={selectedBlogId} onNavigate={(page) => {
+        setSelectedBlogId(null)
+        setCurrentPage(page)
+      }} onRoleChange={setCurrentRole} currentRole={currentRole} />
+    }
+    
+    // Si no, mostrar la lista de blogs
+    return <BlogPage 
+      onNavigate={setCurrentPage} 
+      onRoleChange={setCurrentRole} 
+      onBlogSelect={setSelectedBlogId}
+      currentRole={currentRole} 
+    />
   }
 
   return (

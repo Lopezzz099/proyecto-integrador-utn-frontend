@@ -7,7 +7,7 @@ import { ContactForm } from '@/components/sections/contact/ContactForm'
 import { ContactInfo } from '@/components/sections/contact/ContactInfo'
 
 interface ContactPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy') => void
+  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
   onRoleChange?: (role: 'resident' | 'worker') => void
   currentRole?: 'resident' | 'worker'
 }

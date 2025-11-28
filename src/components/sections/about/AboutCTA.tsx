@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 
 interface AboutCTAProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy') => void
+  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
 export function AboutCTA({ onNavigate }: AboutCTAProps) {

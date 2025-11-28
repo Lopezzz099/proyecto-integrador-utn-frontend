@@ -7,7 +7,7 @@ export function ContactIntro() {
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
             En OferTu nos importa tu experiencia. Este formulario de contacto es un espacio dedicado a:
           </p>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-gray-50 p-6 rounded-lg">
               <div className="text-3xl mb-3">❓</div>
               <h3 className="text-xl font-bold text-[#1F1F1F] mb-2">Dudas y Consultas</h3>
@@ -22,6 +22,14 @@ export function ContactIntro() {
               <p className="text-gray-700">
                 Tienes una idea brillante para mejorar OferTu? Nos encantaría escucharla.
                 Tu feedback nos ayuda a crecer y ser mejor cada día.
+              </p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="text-3xl mb-3">📰</div>
+              <h3 className="text-xl font-bold text-[#1F1F1F] mb-2">Artículos para el Blog</h3>
+              <p className="text-gray-700">
+                ¿Tienes una historia, consejo o noticia para compartir? Envíanos tu artículo
+                y te ayudaremos a publicarlo en nuestro blog.
               </p>
             </div>
           </div>

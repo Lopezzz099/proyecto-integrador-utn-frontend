@@ -9,8 +9,8 @@ import { CTASectionWorker } from '@/components/sections/landing/worker/CTASectio
 import { Footer } from '@/components/sections/shared/Footer'
 
 interface LandingPageWorkerProps {
-  onRoleChange: (role: 'resident' | 'worker') => void
-  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy') => void
+  onRoleChange?: (role: 'resident' | 'worker') => void
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
 export function LandingPageWorker({ onRoleChange, onNavigate }: LandingPageWorkerProps) {

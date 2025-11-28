@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 interface HeaderProps {
   currentRole: 'resident' | 'worker'
   onRoleChange: (role: 'resident' | 'worker') => void
-  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy') => void
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
 export function Header({ currentRole, onRoleChange, onNavigate }: HeaderProps) {

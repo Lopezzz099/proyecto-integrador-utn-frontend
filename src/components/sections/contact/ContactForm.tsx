@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 
 interface ContactFormProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy') => void
+  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
 export function ContactForm({ onNavigate }: ContactFormProps) {
@@ -10,8 +10,10 @@ export function ContactForm({ onNavigate }: ContactFormProps) {
     name: '',
     email: '',
     subject: '',
-    type: 'duda' as 'duda' | 'mejora' | 'otro',
+    type: 'duda' as 'duda' | 'mejora' | 'articulo' | 'otro',
     message: '',
+    category: '',
+    articleTitle: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
@@ -38,6 +40,8 @@ export function ContactForm({ onNavigate }: ContactFormProps) {
         subject: '',
         type: 'duda',
         message: '',
+        category: '',
+        articleTitle: '',
       })
 
       // Limpiar el mensaje de éxito después de 5 segundos
@@ -52,7 +56,10 @@ export function ContactForm({ onNavigate }: ContactFormProps) {
   return (
     <section className="py-20 px-4 bg-gray-100">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-[#1F1F1F] text-center">Envíanos tu mensaje</h2>
+        <h2 className="text-4xl font-bold mb-6 text-[#1F1F1F] text-center">Envíanos tu mensaje</h2>
+        <p className="text-center text-gray-600 mb-8">
+          ¿Tienes una noticia o información interesante? Ahora puedes enviar artículos para que sean publicados en nuestro blog.
+        </p>
 
         {submitSuccess && (
           <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
@@ -127,14 +134,58 @@ export function ContactForm({ onNavigate }: ContactFormProps) {
             >
               <option value="duda">Duda / Pregunta</option>
               <option value="mejora">Sugerencia de Mejora</option>
+              <option value="articulo">Enviar Artículo para el Blog</option>
               <option value="otro">Otro</option>
             </select>
           </div>
 
+          {/* Campos especiales para artículos */}
+          {formData.type === 'articulo' && (
+            <>
+              {/* Título del Artículo */}
+              <div className="mb-6 p-4 bg-[#DBA668] bg-opacity-10 rounded-lg border border-[#DBA668]">
+                <label htmlFor="articleTitle" className="block text-[#1F1F1F] font-bold mb-2">
+                  Título del Artículo *
+                </label>
+                <input
+                  type="text"
+                  id="articleTitle"
+                  name="articleTitle"
+                  value={formData.articleTitle}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#DBA668]"
+                  placeholder="Ej: Cómo elegir el profesional perfecto"
+                />
+              </div>
+
+              {/* Categoría del Artículo */}
+              <div className="mb-6 p-4 bg-[#DBA668] bg-opacity-10 rounded-lg border border-[#DBA668]">
+                <label htmlFor="category" className="block text-[#1F1F1F] font-bold mb-2">
+                  Categoría del Artículo *
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#DBA668]"
+                >
+                  <option value="">Selecciona una categoría</option>
+                  <option value="consejos">Consejos</option>
+                  <option value="tendencias">Tendencias</option>
+                  <option value="historias">Historias de Éxito</option>
+                  <option value="seguridad">Seguridad</option>
+                  <option value="comunidad">Comunidad</option>
+                  <option value="otros">Otros</option>
+                </select>
+              </div>
+            </>
+          )}
+
           {/* Mensaje */}
           <div className="mb-6">
             <label htmlFor="message" className="block text-[#1F1F1F] font-bold mb-2">
-              Mensaje *
+              {formData.type === 'articulo' ? 'Contenido del Artículo *' : 'Mensaje *'}
             </label>
             <textarea
               id="message"
@@ -144,7 +195,7 @@ export function ContactForm({ onNavigate }: ContactFormProps) {
               required
               rows={6}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#DBA668] resize-none"
-              placeholder="Cuéntanos más detalles..."
+              placeholder={formData.type === 'articulo' ? 'Escribe el contenido de tu artículo aquí...' : 'Cuéntanos más detalles...'}
             ></textarea>
           </div>
 
@@ -155,7 +206,7 @@ export function ContactForm({ onNavigate }: ContactFormProps) {
               disabled={isSubmitting}
               className="flex-1 bg-[#DBA668] hover:bg-[#c89555] text-[#1F1F1F] font-bold px-8 py-3 text-lg disabled:opacity-50"
             >
-              {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+              {isSubmitting ? 'Enviando...' : formData.type === 'articulo' ? 'Enviar Artículo' : 'Enviar Mensaje'}
             </Button>
             <Button
               type="button"

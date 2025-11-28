@@ -7,7 +7,7 @@ import { AboutValues } from '@/components/sections/about/AboutValues'
 import { AboutCTA } from '@/components/sections/about/AboutCTA'
 
 interface AboutPageProps {
-  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy') => void
+  onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
   onRoleChange?: (role: 'resident' | 'worker') => void
   currentRole?: 'resident' | 'worker'
 }

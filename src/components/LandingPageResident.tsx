@@ -9,8 +9,8 @@ import { CTASection } from '@/components/sections/landing/resident/CTASection'
 import { Footer } from '@/components/sections/shared/Footer'
 
 interface LandingPageResidentProps {
-  onRoleChange: (role: 'resident' | 'worker') => void
-  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy') => void
+  onRoleChange?: (role: 'resident' | 'worker') => void
+  onNavigate?: (page: 'login' | 'register' | 'about' | 'landing' | 'contact' | 'terms' | 'privacy' | 'blog') => void
 }
 
 export function LandingPageResident({ onRoleChange, onNavigate }: LandingPageResidentProps) {

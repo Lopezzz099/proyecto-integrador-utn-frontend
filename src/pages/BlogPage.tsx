@@ -1,16 +1,17 @@
 import { useEffect } from 'react'
 import { Footer } from '@/components/sections/shared/Footer'
 import { Header } from '@/components/sections/shared/Header'
-import { PrivacyHero } from '@/components/sections/landing/resident/PrivacyHero'
-import { PrivacyContent } from '@/components/sections/landing/resident/PrivacyContent'
+import { BlogHero } from '@/components/sections/blog/BlogHero'
+import { BlogList } from '@/components/sections/blog/BlogList'
 
-interface PrivacyPageProps {
+interface BlogPageProps {
   onNavigate?: (page: 'login' | 'register' | 'landing' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
   onRoleChange?: (role: 'resident' | 'worker') => void
+  onBlogSelect?: (blogId: number) => void
   currentRole?: 'resident' | 'worker'
 }
 
-export function PrivacyPage({ onNavigate, onRoleChange, currentRole = 'resident' }: PrivacyPageProps) {
+export function BlogPage({ onNavigate, onRoleChange, onBlogSelect, currentRole = 'resident' }: BlogPageProps) {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -18,8 +19,8 @@ export function PrivacyPage({ onNavigate, onRoleChange, currentRole = 'resident'
   return (
     <div className="min-h-screen bg-[#EEEEEE]">
       <Header currentRole={currentRole} onRoleChange={onRoleChange || (() => {})} onNavigate={onNavigate} />
-      <PrivacyHero />
-      <PrivacyContent onNavigate={onNavigate} />
+      <BlogHero />
+      <BlogList onNavigate={onNavigate} onBlogSelect={onBlogSelect} />
       <Footer onNavigate={onNavigate} onRoleChange={onRoleChange} />
     </div>
   )
