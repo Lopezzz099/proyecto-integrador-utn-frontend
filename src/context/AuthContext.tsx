@@ -1,71 +1,135 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
+import * as authService from '../services/authService'
+import * as userService from '../services/userService'
+import type { User, UserRole, RegisterUserData, RegisterProfessionalData } from '../services/types'
 
-export type UserRole = 'client' | 'provider'
-
-export interface User {
-  id: string
-  name: string
-  email: string
-  role: UserRole
-  phone?: string
-  location?: string
-  skills?: string[]
-}
+// Re-exportar tipos para compatibilidad
+export type { UserRole, User }
 
 interface AuthContextType {
   user: User | null
   isAuthenticated: boolean
-  login: (email: string, password: string, role: UserRole) => void
-  register: (userData: Partial<User>, password: string) => void
+  isLoading: boolean
+  token: string | null
+  login: (email: string, password: string) => Promise<void>
+  register: (userData: RegisterUserData | RegisterProfessionalData) => Promise<void>
   logout: () => void
+  getUserRole: () => UserRole | null
+  updateUser: (userData: Partial<User>) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(() => {
-    // NO cargar usuario desde localStorage al iniciar
-    // El usuario debe hacer login cada vez
-    return null
-  })
+  const [user, setUser] = useState<User | null>(null)
+  const [token, setToken] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-  const login = (email: string, _password: string, role: UserRole) => {
-    // Simulación de login (en producción sería una llamada API)
-    const mockUser: User = {
-      id: '1',
-      name: 'Usuario Demo',
-      email,
-      role,
-      phone: '1234567890',
-      location: role === 'client' ? 'Buenos Aires' : 'CABA',
-      skills: role === 'provider' ? ['Electricista', 'Plomería'] : undefined,
+  // Inicializar: cargar usuario si hay token válido
+  useEffect(() => {
+    const initAuth = async () => {
+      try {
+        const savedToken = authService.getToken()
+        if (savedToken && authService.isAuthenticated()) {
+          const decoded = authService.getDecodedToken()
+          if (decoded) {
+            // Obtener datos completos del usuario
+            const userData = await userService.getUserById(decoded.id)
+            setUser(userData)
+            setToken(savedToken)
+          }
+        }
+      } catch (error) {
+        console.error('Error inicializando autenticación:', error)
+        authService.logout()
+      } finally {
+        setIsLoading(false)
+      }
     }
-    setUser(mockUser)
-    localStorage.setItem('user', JSON.stringify(mockUser))
+
+    initAuth()
+  }, [])
+
+  const login = async (email: string, password: string) => {
+    try {
+      setIsLoading(true)
+      
+      // Llamar al servicio de login
+      const receivedToken = await authService.login({ email, password })
+      
+      // Decodificar token para obtener el ID del usuario
+      const decoded = authService.getDecodedToken()
+      if (!decoded) {
+        throw new Error('Token inválido')
+      }
+      
+      // Obtener datos completos del usuario
+      const userData = await userService.getUserById(decoded.id)
+      
+      setUser(userData)
+      setToken(receivedToken)
+    } catch (error: any) {
+      console.error('Error en login:', error)
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  const register = (userData: Partial<User>, _password: string) => {
-    // Simulación de registro (en producción sería una llamada API)
-    const newUser: User = {
-      id: Math.random().toString(),
-      name: userData.name || '',
-      email: userData.email || '',
-      role: userData.role || 'client',
-      phone: userData.phone,
-      location: userData.location,
-      skills: userData.skills,
+  const register = async (userData: RegisterUserData | RegisterProfessionalData) => {
+    try {
+      setIsLoading(true)
+      
+      // Determinar si es profesional o usuario
+      const isProfessional = userData.rol_id === 3
+      
+      if (isProfessional) {
+        await userService.registerProfessional(userData as RegisterProfessionalData)
+      } else {
+        await userService.registerUser(userData as RegisterUserData)
+      }
+      
+      // Después del registro exitoso, hacer login automáticamente
+      await login(userData.email, userData.password)
+    } catch (error: any) {
+      console.error('Error en registro:', error)
+      throw error
+    } finally {
+      setIsLoading(false)
     }
-    setUser(newUser)
-    localStorage.setItem('user', JSON.stringify(newUser))
   }
 
   const logout = () => {
+    authService.logout()
     setUser(null)
-    localStorage.removeItem('user')
+    setToken(null)
+  }
+
+  const getUserRole = (): UserRole | null => {
+    if (!user) return null
+    return user.rol_id === 3 ? 'provider' : 'client'
+  }
+
+  const updateUser = (userData: Partial<User>) => {
+    if (user) {
+      setUser({ ...user, ...userData })
+    }
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, login, register, logout }}>
+    <AuthContext.Provider 
+      value={{ 
+        user, 
+        isAuthenticated: !!user && !!token, 
+        isLoading,
+        token,
+        login, 
+        register, 
+        logout,
+        getUserRole,
+        updateUser
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )

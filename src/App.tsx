@@ -37,15 +37,15 @@ function AppContent() {
 
   if (isAuthenticated && user) {
     // Mostrar el dashboard según el rol del usuario
-    if (user.role === 'provider') {
-      // Dashboard del trabajador
+    if (user.rol_id === 3) {
+      // Dashboard del trabajador (rol_id: 3)
       return <WorkerDashboardPage onNavigate={(page) => {
         if (page === 'landing') {
           setCurrentPage('landing')
         }
       }} />
     } else {
-      // Dashboard del cliente
+      // Dashboard del cliente (rol_id: 2)
       return <DashboardPage onNavigate={(page) => {
         if (page === 'landing') {
           setCurrentPage('landing')

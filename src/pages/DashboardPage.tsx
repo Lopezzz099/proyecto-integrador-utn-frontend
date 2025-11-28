@@ -1,13 +1,20 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
 import { SearchBar } from '@/components/dashboard/SearchBar'
 import { FilterPanel } from '@/components/dashboard/FilterPanel'
 import { WorkerCard } from '@/components/dashboard/WorkerCard'
 import { workers } from '@/data/workersData'
+import { getAllProfessionals } from '@/services/professionalService'
+import { getUserById } from '@/services/userService'
+import type { ProfesionalData, User } from '@/services/types'
 import { SlidersHorizontal } from 'lucide-react'
 
 interface DashboardPageProps {
   onNavigate?: (page: 'landing' | 'login' | 'register' | 'about' | 'contact' | 'terms' | 'privacy' | 'blog') => void
+}
+
+interface WorkerWithUser extends ProfesionalData {
+  user?: User
 }
 
 export function DashboardPage({ onNavigate }: DashboardPageProps) {
@@ -19,10 +26,68 @@ export function DashboardPage({ onNavigate }: DashboardPageProps) {
   const [maxDistance, setMaxDistance] = useState(20)
   const [maxPrice, setMaxPrice] = useState(5000)
   const [sortBy, setSortBy] = useState<'rating' | 'distance' | 'price'>('rating')
+  const [professionals, setProfessionals] = useState<WorkerWithUser[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Cargar profesionales desde el backend
+  useEffect(() => {
+    const loadProfessionals = async () => {
+      try {
+        setIsLoading(true)
+        const professionalsData = await getAllProfessionals()
+        
+        // Obtener información de usuario para cada profesional
+        const professionalsWithUser = await Promise.all(
+          professionalsData.map(async (prof) => {
+            try {
+              const user = await getUserById(prof.usuario_id)
+              return { ...prof, user }
+            } catch (err) {
+              console.error(`Error cargando usuario ${prof.usuario_id}:`, err)
+              return prof
+            }
+          })
+        )
+        
+        setProfessionals(professionalsWithUser)
+      } catch (err: any) {
+        console.error('Error cargando profesionales:', err)
+        setError(err.message || 'Error al cargar profesionales')
+        // Usar datos mock como fallback
+        setProfessionals([])
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadProfessionals()
+  }, [])
 
   // Filtrar y ordenar trabajadores
   const filteredWorkers = useMemo(() => {
-    let filtered = workers.filter((worker) => {
+    // Usar datos del backend si están disponibles, sino usar datos mock
+    const dataSource = professionals.length > 0 ? 
+      professionals.map(prof => ({
+        id: prof.id.toString(),
+        name: prof.user?.nombre || 'Profesional',
+        category: prof.oficios?.[0]?.nombre || 'General',
+        specialties: prof.oficios?.map(o => o.nombre) || [],
+        rating: prof.promedio || 0,
+        reviewCount: prof.comentarios?.length || 0,
+        location: prof.user?.ubicacion?.zona || 'Sin ubicación',
+        distance: 5,
+        hourlyRate: 500,
+        availability: (prof.estado === '1' ? 'available' : 'unavailable') as 'available' | 'busy' | 'unavailable',
+        image: '/placeholder-worker.jpg',
+        description: prof.descripcion || '',
+        experience: 2,
+        verified: prof.verificacion === '1',
+        responseTime: '2 horas',
+      })) : 
+      workers
+
+    let filtered = dataSource.filter((worker) => {
       // Búsqueda por nombre o especialidades
       const matchesSearch = 
         worker.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -65,7 +130,7 @@ export function DashboardPage({ onNavigate }: DashboardPageProps) {
     })
 
     return filtered
-  }, [searchQuery, selectedCategory, selectedLocation, minRating, maxDistance, maxPrice, sortBy])
+  }, [searchQuery, selectedCategory, selectedLocation, minRating, maxDistance, maxPrice, sortBy, professionals])
 
   const handleClearFilters = () => {
     setSelectedCategory('Todos')
@@ -150,7 +215,26 @@ export function DashboardPage({ onNavigate }: DashboardPageProps) {
             </div>
 
             {/* Grid de tarjetas */}
-            {filteredWorkers.length > 0 ? (
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#DBA668] mx-auto"></div>
+                <p className="text-gray-600 mt-4">Cargando profesionales...</p>
+              </div>
+            ) : error ? (
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">⚠️</div>
+                <h3 className="text-xl font-bold text-[#1F1F1F] mb-2">
+                  Error al cargar datos
+                </h3>
+                <p className="text-gray-600 mb-4">{error}</p>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="px-6 py-2 bg-[#DBA668] hover:bg-[#c89555] text-white rounded-lg font-medium transition-colors"
+                >
+                  Reintentar
+                </button>
+              </div>
+            ) : filteredWorkers.length > 0 ? (
               <div className="space-y-4">
                 {filteredWorkers.map((worker) => (
                   <WorkerCard

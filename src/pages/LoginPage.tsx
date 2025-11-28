@@ -22,7 +22,7 @@ export function LoginPage({ onNavigate, initialRole }: LoginPageProps) {
     window.scrollTo(0, 0)
   }, [])
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setErrors({})
     setIsLoading(true)
@@ -38,11 +38,11 @@ export function LoginPage({ onNavigate, initialRole }: LoginPageProps) {
     }
 
     try {
-      login(email, password, selectedRole)
+      await login(email, password)
       // Si el login fue exitoso, el context maneja la navegación
-    } catch (error) {
+    } catch (error: any) {
       setErrors({
-        general: 'Credenciales inválidas. Intenta de nuevo.',
+        general: error.message || 'Credenciales inválidas. Intenta de nuevo.',
       })
     } finally {
       setIsLoading(false)

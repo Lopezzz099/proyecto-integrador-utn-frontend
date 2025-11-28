@@ -123,7 +123,7 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
     }
   }
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateStep()) {
       return
@@ -131,17 +131,40 @@ export function RegisterPage({ onNavigate, initialRole }: RegisterPageProps) {
 
     setIsLoading(true)
     try {
-      register(
-        {
-          name: `${formData.name} ${formData.lastName}`,
-          email: formData.email,
-          role: selectedRole,
-          phone: formData.phone,
-          location: formData.location,
-          skills: selectedRole === 'provider' ? formData.skills : undefined,
+      // Preparar datos para el backend
+      const registerData = {
+        nombre: `${formData.name} ${formData.lastName}`,
+        email: formData.email,
+        password: formData.password,
+        telefono: formData.phone,
+        condiciones: '1',
+        rol_id: selectedRole === 'provider' ? 3 : 2,
+        ubicacion: {
+          zona: formData.location.split(',')[0]?.trim() || formData.location,
+          ciudad: formData.location.split(',')[1]?.trim() || 'Buenos Aires',
         },
-        formData.password
-      )
+      }
+
+      // Si es profesional, agregar datos adicionales
+      if (selectedRole === 'provider') {
+        Object.assign(registerData, {
+          descripcion: `Profesional de ${formData.skills.join(', ')}`,
+          estado: '1',
+          disponibilidad: 'Consultar disponibilidad',
+          oficios: formData.skills,
+        })
+      }
+
+      await register(registerData)
+      
+      // Redirigir al dashboard correspondiente después del registro exitoso
+      if (onNavigate) {
+        // El AuthContext ya redirige automáticamente después del login
+      }
+    } catch (error: any) {
+      setErrors({
+        general: error.message || 'Error al registrar usuario',
+      })
     } finally {
       setIsLoading(false)
     }
