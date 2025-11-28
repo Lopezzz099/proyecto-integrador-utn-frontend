@@ -145,8 +145,8 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
         condiciones: '1',
         rol_id: selectedRole === 'provider' ? 3 : 2,
         ubicacion: {
-          zona: formData.municipio,
-          ciudad: formData.localidad,
+          localidad: formData.municipio,
+          municipio: formData.localidad,
         },
       }
 

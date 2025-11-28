@@ -67,7 +67,7 @@ Landing Page (Residente/Trabajador)
   email: string
   role: 'provider'
   phone?: string
-  location?: string (zona de cobertura)
+  location?: string (localidad de cobertura)
   skills?: string[] (oficios/habilidades)
 }
 ```

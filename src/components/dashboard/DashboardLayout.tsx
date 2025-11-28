@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Home, MessageSquare, Settings, LogOut, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
+import { useAuth } from '@/context/AuthContext'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -9,7 +10,13 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const navigate = useNavigate()
+  const { user, logout } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
 
   return (
     <div className="min-h-screen bg-[#EEEEEE]">
@@ -26,14 +33,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <h1 className="text-2xl font-bold text-[#DBA668]">OferTu</h1>
           </div>
           <div className="flex items-center gap-4">
-            <span className="hidden sm:block text-sm">Bienvenido, Usuario</span>
+            <span className="hidden sm:block text-sm">Bienvenido, {user?.nombre || 'Usuario'}</span>
             <Button
               variant="ghost"
               size="sm"
-              className="text-white hover:text-[#DBA668]"
-              onClick={() => navigate('/')}
+              className="text-white hover:text-[#DBA668] hover:bg-white/10"
+              onClick={handleLogout}
+              title="Cerrar sesión"
             >
               <LogOut className="w-5 h-5" />
+              <span className="hidden md:inline ml-2">Salir</span>
             </Button>
           </div>
         </div>

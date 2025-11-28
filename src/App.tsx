@@ -19,12 +19,24 @@ function AppContent() {
     const savedRole = localStorage.getItem('currentRole')
     return (savedRole as 'resident' | 'worker') || 'resident'
   })
-  const { isAuthenticated, user } = useAuth()
+  const { isAuthenticated, user, isLoading } = useAuth()
 
   // Guardar el rol en localStorage cada vez que cambia
   useEffect(() => {
     localStorage.setItem('currentRole', currentRole)
   }, [currentRole])
+
+  // Mostrar loader mientras se verifica la autenticación
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#DBA668] mx-auto mb-4"></div>
+          <p className="text-gray-600 font-medium">Cargando...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <Routes>

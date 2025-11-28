@@ -1,10 +1,10 @@
 import { api, ENDPOINTS } from './api'
-import type { ApiResponse, ProfesionalData } from './types'
+import type { ApiResponse, User } from './types'
 
-// Obtener todos los profesionales
-export const getAllProfessionals = async (): Promise<ProfesionalData[]> => {
+// Obtener todos los profesionales (usuarios con rol_id 3)
+export const getAllProfessionals = async (): Promise<User[]> => {
   try {
-    const response = await api.get<ApiResponse<ProfesionalData[]>>(
+    const response = await api.get<ApiResponse<User[]>>(
       ENDPOINTS.PROFESIONALES
     )
     
@@ -20,9 +20,9 @@ export const getAllProfessionals = async (): Promise<ProfesionalData[]> => {
 }
 
 // Obtener profesional por ID
-export const getProfessionalById = async (id: number): Promise<ProfesionalData> => {
+export const getProfessionalById = async (id: number): Promise<User> => {
   try {
-    const response = await api.get<ApiResponse<ProfesionalData>>(
+    const response = await api.get<ApiResponse<User>>(
       ENDPOINTS.PROFESIONALES_BY_ID(id)
     )
     
@@ -40,7 +40,7 @@ export const getProfessionalById = async (id: number): Promise<ProfesionalData> 
 // Actualizar profesional
 export const updateProfessional = async (
   id: number,
-  professionalData: Partial<ProfesionalData>
+  professionalData: Partial<User>
 ): Promise<void> => {
   try {
     const response = await api.put<ApiResponse<string>>(
@@ -76,7 +76,7 @@ export const deleteProfessional = async (id: number): Promise<void> => {
 // Filtrar profesionales por oficio
 export const filterProfessionalsBySkill = async (
   _skill: string
-): Promise<ProfesionalData[]> => {
+): Promise<User[]> => {
   try {
     const professionals = await getAllProfessionals()
     // Aquí puedes implementar un filtro adicional si el backend no lo soporta
@@ -90,7 +90,7 @@ export const filterProfessionalsBySkill = async (
 // Filtrar profesionales por ubicación
 export const filterProfessionalsByLocation = async (
   _location: string
-): Promise<ProfesionalData[]> => {
+): Promise<User[]> => {
   try {
     const professionals = await getAllProfessionals()
     // Aquí puedes implementar un filtro adicional si el backend no lo soporta

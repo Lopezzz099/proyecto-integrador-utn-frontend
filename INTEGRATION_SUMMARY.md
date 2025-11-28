@@ -90,7 +90,7 @@ Se ha completado exitosamente la integración del frontend con el backend de Ofe
 **`src/pages/RegisterPage.tsx`**
 - ✅ Mapeo de datos del formulario al formato del backend
 - ✅ Diferenciación entre registro de cliente y profesional
-- ✅ Envío correcto de ubicación (zona, ciudad)
+- ✅ Envío correcto de ubicación (localidad, municipio)
 - ✅ Envío de oficios para profesionales
 - ✅ Login automático después del registro exitoso
 - ✅ Manejo de errores
@@ -128,7 +128,7 @@ Se ha completado exitosamente la integración del frontend con el backend de Ofe
 ### ✅ Usuarios
 - [x] Obtener datos del usuario logueado
 - [x] Actualizar información del usuario
-- [x] Gestión de ubicaciones (zona, ciudad)
+- [x] Gestión de ubicaciones (localidad, municipio)
 
 ### ✅ Profesionales
 - [x] Listar todos los profesionales
@@ -171,8 +171,8 @@ Se ha completado exitosamente la integración del frontend con el backend de Ofe
   "condiciones": "1",
   "rol_id": 2,
   "ubicacion": {
-    "zona": "Centro",
-    "ciudad": "Buenos Aires"
+    "localidad": "Centro",
+    "municipio": "Buenos Aires"
   }
 }
 ```
@@ -187,8 +187,8 @@ Se ha completado exitosamente la integración del frontend con el backend de Ofe
   "condiciones": "1",
   "rol_id": 3,
   "ubicacion": {
-    "zona": "Norte",
-    "ciudad": "Córdoba"
+    "localidad": "Norte",
+    "municipio": "Córdoba"
   },
   "descripcion": "Plomera con 10 años de experiencia",
   "estado": "1",
@@ -228,9 +228,10 @@ Sigue la guía en `TESTING_GUIDE.md`
 
 - `POST /api/usuarios` - Registro
 - `POST /api/usuarios/login` - Login
-- `GET /api/usuarios/:id` - Obtener usuario
-- `GET /api/profesionales` - Listar profesionales
-- `GET /api/profesionales/:id` - Obtener profesional
+- `GET /api/usuarios/:id` - Obtener usuario o profesional
+- `GET /api/usuarios/todos/profesionales` - Listar todos los profesionales
+- `PUT /api/usuarios/:id` - Actualizar usuario o profesional
+- `DELETE /api/usuarios/:id` - Eliminar usuario o profesional
 
 ## ⚠️ Importante
 

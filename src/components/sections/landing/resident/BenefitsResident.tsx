@@ -4,7 +4,7 @@ export function BenefitsResident() {
   const benefits = [
     {
       title: 'Encuentra Profesionales Confiables',
-      description: 'Accede a un directorio verificado de trabajadores en tu zona',
+      description: 'Accede a un directorio verificado de trabajadores en tu localidad',
       items: [
         'Perfiles profesionales con certificaciones',
         'Historial completo de trabajos realizados',

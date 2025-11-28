@@ -47,6 +47,6 @@ export const ENDPOINTS = {
   USUARIOS_BY_ID: (id: number) => `/usuarios/${id}`,
   
   // Profesionales
-  PROFESIONALES: '/profesionales',
-  PROFESIONALES_BY_ID: (id: number) => `/profesionales/${id}`,
+  PROFESIONALES: '/usuarios/todos/profesionales',
+  PROFESIONALES_BY_ID: (id: number) => `/usuarios/${id}`,
 } as const

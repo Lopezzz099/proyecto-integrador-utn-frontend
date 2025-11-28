@@ -13,7 +13,7 @@ export function Footer({ onRoleChange }: FooterProps) {
         <div>
           <h4 className="font-bold text-lg mb-4 text-[#DBA668]">OferTu</h4>
           <p className="text-sm text-gray-400">
-            Conectando residentes con profesionales en tu zona
+            Conectando residentes con profesionales en tu localidad
           </p>
         </div>
         <div>

@@ -11,8 +11,8 @@ export const ROLE_ID = {
 // Ubicación
 export interface Ubicacion {
   id?: number
-  zona: string
-  ciudad: string
+  localidad: string
+  municipio: string
 }
 
 // Oficio
@@ -25,19 +25,19 @@ export interface Oficio {
 export interface Comentario {
   id: number
   usuario_id: number
-  profesional_id: number
-  calificacion: number
+  profesional_id?: number
+  estrellas: number
   comentario: string
-  fecha: string
+  fecha?: string
 }
 
 // Datos de profesional
 export interface ProfesionalData {
   id: number
-  usuario_id: number
+  usuario_id?: number
   descripcion: string
-  verificacion: string
-  estado: string
+  verificacion: number
+  estado: number
   disponibilidad: string
   promedio: number
   ubicaciones?: Ubicacion[]
@@ -67,8 +67,8 @@ export interface RegisterUserData {
   condiciones: string
   rol_id: number
   ubicacion: {
-    zona: string
-    ciudad: string
+    localidad: string
+    municipio: string
   }
 }
 

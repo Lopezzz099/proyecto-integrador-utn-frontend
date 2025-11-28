@@ -3,15 +3,9 @@ import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
 import { SearchBar } from '@/components/dashboard/SearchBar'
 import { FilterPanel } from '@/components/dashboard/FilterPanel'
 import { WorkerCard } from '@/components/dashboard/WorkerCard'
-import { workers } from '@/data/workersData'
 import { getAllProfessionals } from '@/services/professionalService'
-import { getUserById } from '@/services/userService'
-import type { ProfesionalData, User } from '@/services/types'
+import type { User } from '@/services/types'
 import { SlidersHorizontal } from 'lucide-react'
-
-interface WorkerWithUser extends ProfesionalData {
-  user?: User
-}
 
 export function DashboardPage() {
   // Estados de búsqueda y filtros
@@ -19,10 +13,8 @@ export function DashboardPage() {
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const [selectedLocation, setSelectedLocation] = useState('Todas')
   const [minRating, setMinRating] = useState(0)
-  const [maxDistance, setMaxDistance] = useState(20)
-  const [maxPrice, setMaxPrice] = useState(5000)
-  const [sortBy, setSortBy] = useState<'rating' | 'distance' | 'price'>('rating')
-  const [professionals, setProfessionals] = useState<WorkerWithUser[]>([])
+  const [sortBy, setSortBy] = useState<'rating'>('rating')
+  const [professionals, setProfessionals] = useState<User[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -32,25 +24,10 @@ export function DashboardPage() {
       try {
         setIsLoading(true)
         const professionalsData = await getAllProfessionals()
-        
-        // Obtener información de usuario para cada profesional
-        const professionalsWithUser = await Promise.all(
-          professionalsData.map(async (prof) => {
-            try {
-              const user = await getUserById(prof.usuario_id)
-              return { ...prof, user }
-            } catch (err) {
-              console.error(`Error cargando usuario ${prof.usuario_id}:`, err)
-              return prof
-            }
-          })
-        )
-        
-        setProfessionals(professionalsWithUser)
+        setProfessionals(professionalsData)
       } catch (err: any) {
         console.error('Error cargando profesionales:', err)
         setError(err.message || 'Error al cargar profesionales')
-        // Usar datos mock como fallback
         setProfessionals([])
       } finally {
         setIsLoading(false)
@@ -62,78 +39,61 @@ export function DashboardPage() {
 
   // Filtrar y ordenar trabajadores
   const filteredWorkers = useMemo(() => {
-    // Usar datos del backend si están disponibles, sino usar datos mock
-    const dataSource = professionals.length > 0 ? 
-      professionals.map(prof => ({
+    // Transformar datos del backend al formato esperado por WorkerCard
+    const dataSource = professionals
+      .filter(prof => prof.profesional) // Solo incluir usuarios que tienen datos de profesional
+      .map(prof => ({
         id: prof.id.toString(),
-        name: prof.user?.nombre || 'Profesional',
-        category: prof.oficios?.[0]?.nombre || 'General',
-        specialties: prof.oficios?.map(o => o.nombre) || [],
-        rating: prof.promedio || 0,
-        reviewCount: prof.comentarios?.length || 0,
-        location: prof.user?.ubicacion?.zona || 'Sin ubicación',
-        distance: 5,
-        hourlyRate: 500,
-        availability: (prof.estado === '1' ? 'available' : 'unavailable') as 'available' | 'busy' | 'unavailable',
-        image: '/placeholder-worker.jpg',
-        description: prof.descripcion || '',
-        experience: 2,
-        verified: prof.verificacion === '1',
-        responseTime: '2 horas',
-      })) : 
-      workers
+        name: prof.nombre || 'Sin nombre',
+        category: prof.profesional?.oficios?.[0]?.nombre || 'General',
+        specialties: prof.profesional?.oficios?.map(o => o.nombre) || [],
+        rating: prof.profesional?.promedio || 0,
+        reviewCount: prof.profesional?.comentarios?.length || 0,
+        locations: prof.profesional?.ubicaciones || [],
+        verified: prof.profesional?.verificacion === 1,
+        estado: prof.profesional?.estado === 1 ? 'Activo' : 'Inactivo',
+        disponibilidad: prof.profesional?.disponibilidad || 'No disponible',
+        availability: (prof.profesional?.estado === 1 ? 'available' : 'unavailable') as 'available' | 'busy' | 'unavailable',
+        description: prof.profesional?.descripcion || '',
+      }))
 
     let filtered = dataSource.filter((worker) => {
       // Búsqueda por nombre o especialidades
       const matchesSearch = 
-        worker.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        worker.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        worker.specialties.some(s => s.toLowerCase().includes(searchQuery.toLowerCase()))
+        (worker.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (worker.category || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+        worker.specialties.some(s => (s || '').toLowerCase().includes(searchQuery.toLowerCase()))
 
       // Filtro de categoría
       const matchesCategory = 
-        selectedCategory === 'Todos' || worker.category === selectedCategory
+        selectedCategory === 'Todos' || (worker.category || '') === selectedCategory
 
       // Filtro de ubicación
       const matchesLocation = 
-        selectedLocation === 'Todas' || worker.location === selectedLocation
+        selectedLocation === 'Todas' || 
+        worker.locations.some(loc => `${loc?.localidad || ''}, ${loc?.municipio || ''}` === selectedLocation)
 
       // Filtro de calificación
-      const matchesRating = worker.rating >= minRating
+      const matchesRating = (worker.rating || 0) >= minRating
 
-      // Filtro de distancia
-      const matchesDistance = worker.distance <= maxDistance
-
-      // Filtro de precio
-      const matchesPrice = worker.hourlyRate <= maxPrice
-
-      return matchesSearch && matchesCategory && matchesLocation && 
-             matchesRating && matchesDistance && matchesPrice
+      return matchesSearch && matchesCategory && matchesLocation && matchesRating
     })
 
     // Ordenar
     filtered.sort((a, b) => {
-      switch (sortBy) {
-        case 'rating':
-          return b.rating - a.rating
-        case 'distance':
-          return a.distance - b.distance
-        case 'price':
-          return a.hourlyRate - b.hourlyRate
-        default:
-          return 0
+      if (sortBy === 'rating') {
+        return b.rating - a.rating
       }
+      return 0
     })
 
     return filtered
-  }, [searchQuery, selectedCategory, selectedLocation, minRating, maxDistance, maxPrice, sortBy, professionals])
+  }, [searchQuery, selectedCategory, selectedLocation, minRating, sortBy, professionals])
 
   const handleClearFilters = () => {
     setSelectedCategory('Todos')
     setSelectedLocation('Todas')
     setMinRating(0)
-    setMaxDistance(20)
-    setMaxPrice(5000)
     setSearchQuery('')
   }
 
@@ -156,7 +116,7 @@ export function DashboardPage() {
             Encuentra tu profesional ideal
           </h1>
           <p className="text-gray-600">
-            Busca y filtra entre cientos de profesionales verificados en tu zona
+            Busca y filtra entre cientos de profesionales verificados en tu localidad
           </p>
         </div>
 
@@ -176,13 +136,9 @@ export function DashboardPage() {
               selectedCategory={selectedCategory}
               selectedLocation={selectedLocation}
               minRating={minRating}
-              maxDistance={maxDistance}
-              maxPrice={maxPrice}
               onCategoryChange={setSelectedCategory}
               onLocationChange={setSelectedLocation}
               onRatingChange={setMinRating}
-              onDistanceChange={setMaxDistance}
-              onPriceChange={setMaxPrice}
               onClearFilters={handleClearFilters}
             />
           </div>
@@ -200,12 +156,10 @@ export function DashboardPage() {
                 <label className="text-sm text-gray-600">Ordenar por:</label>
                 <select
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as 'rating' | 'distance' | 'price')}
+                  onChange={(e) => setSortBy(e.target.value as 'rating')}
                   className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DBA668] focus:border-transparent outline-none text-sm"
                 >
                   <option value="rating">Mejor calificados</option>
-                  <option value="distance">Más cercanos</option>
-                  <option value="price">Menor precio</option>
                 </select>
               </div>
             </div>

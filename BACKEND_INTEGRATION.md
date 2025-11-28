@@ -67,8 +67,8 @@ await registerUser({
   condiciones: '1',
   rol_id: 2,
   ubicacion: {
-    zona: 'Centro',
-    ciudad: 'Buenos Aires'
+    localidad: 'Centro',
+    municipio: 'Buenos Aires'
   }
 })
 ```
@@ -86,8 +86,8 @@ await registerProfessional({
   condiciones: '1',
   rol_id: 3,
   ubicacion: {
-    zona: 'Norte',
-    ciudad: 'Córdoba'
+    localidad: 'Norte',
+    municipio: 'Córdoba'
   },
   descripcion: 'Plomera con 10 años de experiencia',
   estado: '1',
@@ -169,8 +169,8 @@ const handleRegister = async () => {
     condiciones: '1',
     rol_id: 2,
     ubicacion: {
-      zona: 'Centro',
-      ciudad: 'Buenos Aires'
+      localidad: 'Centro',
+      municipio: 'Buenos Aires'
     }
   })
   // Después del registro exitoso, se hace login automáticamente
@@ -241,10 +241,10 @@ try {
 
 ### Profesionales
 
-- `GET /profesionales` - Obtener todos los profesionales
-- `GET /profesionales/:id` - Obtener profesional por ID
-- `PUT /profesionales/:id` - Actualizar profesional
-- `DELETE /profesionales/:id` - Eliminar profesional
+- `GET /usuarios/todos/profesionales` - Obtener todos los profesionales
+- `GET /usuarios/:id` - Obtener profesional por ID (mismo que usuarios)
+- `PUT /usuarios/:id` - Actualizar profesional (mismo que usuarios)
+- `DELETE /usuarios/:id` - Eliminar profesional (mismo que usuarios)
 
 ## 🔧 Desarrollo
 

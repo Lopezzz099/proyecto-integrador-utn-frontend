@@ -245,7 +245,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
-                  Zona
+                  localidad
                 </label>
                 <select
                   value={formData.location}

@@ -221,7 +221,7 @@ Contraseña: 123456
 - Los tokens JWT expiran según la configuración del backend
 - Las contraseñas deben coincidir en el campo "Contraseña" y "Confirmar Contraseña"
 - Los oficios se crean automáticamente si no existen en el backend
-- La ubicación debe tener formato: "Zona, Ciudad" (ej: "Centro, Buenos Aires")
+- La ubicación debe tener formato: "localidad, municipio" (ej: "Centro, Buenos Aires")
 
 ## ✨ ¡Listo!
 

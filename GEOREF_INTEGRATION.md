@@ -96,8 +96,8 @@ GET /localidades?provincia=06&municipio={id}&nombre={query}&max=5
 ```json
 {
   "ubicacion": {
-    "zona": "La Plata",      // municipio
-    "ciudad": "City Bell"    // localidad
+    "localidad": "La Plata",      // municipio
+    "municipio": "City Bell"    // localidad
   }
 }
 ```
@@ -129,14 +129,14 @@ GET /localidades?provincia=06&municipio={id}&nombre={query}&max=5
 ```
 Municipio: La Plata
 Localidad: City Bell
-→ Backend recibe: zona="La Plata", ciudad="City Bell"
+→ Backend recibe: localidad="La Plata", municipio="City Bell"
 ```
 
 ### Profesional (Trabajador)
 ```
 Municipio de Cobertura: San Isidro
 Localidad de Cobertura: Martínez
-→ Backend recibe: zona="San Isidro", ciudad="Martínez"
+→ Backend recibe: localidad="San Isidro", municipio="Martínez"
 ```
 
 ## 🔍 Ejemplos de Búsqueda

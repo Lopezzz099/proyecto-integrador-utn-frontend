@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Filter, X, Star, MapPin, DollarSign } from 'lucide-react'
+import { Filter, X, Star, MapPin, Briefcase } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { categories } from '@/data/workersData'
 
@@ -7,13 +7,9 @@ interface FilterPanelProps {
   selectedCategory: string
   selectedLocation: string
   minRating: number
-  maxDistance: number
-  maxPrice: number
   onCategoryChange: (category: string) => void
   onLocationChange: (location: string) => void
   onRatingChange: (rating: number) => void
-  onDistanceChange: (distance: number) => void
-  onPriceChange: (price: number) => void
   onClearFilters: () => void
 }
 
@@ -23,13 +19,9 @@ export function FilterPanel({
   selectedCategory,
   selectedLocation,
   minRating,
-  maxDistance,
-  maxPrice,
   onCategoryChange,
   onLocationChange,
   onRatingChange,
-  onDistanceChange,
-  onPriceChange,
   onClearFilters
 }: FilterPanelProps) {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,9 +29,7 @@ export function FilterPanel({
   const hasActiveFilters = 
     selectedCategory !== 'Todos' || 
     selectedLocation !== 'Todas' || 
-    minRating > 0 || 
-    maxDistance < 20 || 
-    maxPrice < 5000
+    minRating > 0
 
   return (
     <>
@@ -77,10 +67,11 @@ export function FilterPanel({
           )}
         </div>
 
-        {/* Categoría */}
+        {/* Oficios */}
         <div>
-          <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
-            Categoría
+          <label className="block text-sm font-semibold text-[#1F1F1F] mb-2 flex items-center gap-1">
+            <Briefcase className="w-4 h-4" />
+            Oficio
           </label>
           <select
             value={selectedCategory}
@@ -132,47 +123,6 @@ export function FilterPanel({
           <div className="flex justify-between text-xs text-gray-500 mt-1">
             <span>Todas</span>
             <span>5.0</span>
-          </div>
-        </div>
-
-        {/* Distancia máxima */}
-        <div>
-          <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
-            Distancia máxima: {maxDistance} km
-          </label>
-          <input
-            type="range"
-            min="1"
-            max="20"
-            step="0.5"
-            value={maxDistance}
-            onChange={(e) => onDistanceChange(parseFloat(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#DBA668]"
-          />
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
-            <span>1 km</span>
-            <span>20 km</span>
-          </div>
-        </div>
-
-        {/* Precio máximo por hora */}
-        <div>
-          <label className="block text-sm font-semibold text-[#1F1F1F] mb-2 flex items-center gap-1">
-            <DollarSign className="w-4 h-4" />
-            Precio máximo: ${maxPrice}/hora
-          </label>
-          <input
-            type="range"
-            min="500"
-            max="5000"
-            step="100"
-            value={maxPrice}
-            onChange={(e) => onPriceChange(parseInt(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#DBA668]"
-          />
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
-            <span>$500</span>
-            <span>$5000</span>
           </div>
         </div>
       </div>
