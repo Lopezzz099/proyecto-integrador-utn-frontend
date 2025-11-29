@@ -12,6 +12,7 @@ import { Step2Content } from '@/components/auth/Step2Content'
 import { Step3Content } from '@/components/auth/Step3Content'
 import { Step4Content } from '@/components/auth/Step4Content'
 import { AuthLinks } from '@/components/auth/AuthLinks'
+import { AlertCircle } from 'lucide-react'
 
 interface RegisterPageProps {
   initialRole?: 'resident' | 'worker'
@@ -34,6 +35,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
     localidad: '',
     localidadId: '',
     skills: [] as string[],
+    selectedOficiosIds: [] as number[],
     password: '',
     confirmPassword: '',
   })
@@ -46,7 +48,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
     window.scrollTo(0, 0)
   }, [])
 
-  const handleChange = (field: string, value: string | string[]) => {
+  const handleChange = (field: string, value: string | string[] | number[]) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
     // Limpiar error cuando el usuario comienza a editar
     if (errors[field]) {
@@ -131,6 +133,25 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateStep()) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    // Validación final antes de enviar
+    if (!formData.name || !formData.lastName || !formData.email || !formData.phone || 
+        !formData.municipio || !formData.localidad || !formData.password) {
+      setErrors({
+        general: 'Por favor completa todos los campos requeridos',
+      })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    if (selectedRole === 'provider' && formData.skills.length === 0) {
+      setErrors({
+        general: 'Por favor selecciona al menos un oficio',
+      })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
 
@@ -153,20 +174,20 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
       // Si es profesional, agregar datos adicionales
       if (selectedRole === 'provider') {
         Object.assign(registerData, {
-          descripcion: `Profesional de ${formData.skills.join(', ')}`,
-          estado: '1',
-          disponibilidad: 'Consultar disponibilidad',
           oficios: formData.skills,
         })
       }
 
+      console.log('Enviando datos de registro:', registerData)
       await register(registerData)
       // Redirigir al dashboard después del registro exitoso
       navigate('/dashboard')
     } catch (error: any) {
+      console.error('Error en registro:', error)
       setErrors({
-        general: error.message || 'Error al registrar usuario',
+        general: error.message || 'Error al registrar usuario. Por favor intenta de nuevo.',
       })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } finally {
       setIsLoading(false)
     }
@@ -197,6 +218,17 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
       )}
 
       <ProgressBar currentStep={step} totalSteps={getTotalSteps()} />
+
+      {/* Alerta de error general */}
+      {errors.general && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="text-sm font-semibold text-red-900">Error al registrar</p>
+            <p className="text-sm text-red-700 mt-1">{errors.general}</p>
+          </div>
+        </div>
+      )}
 
       {/* Step Contents */}
       {step === 1 && (
@@ -238,9 +270,11 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
           password={formData.password}
           confirmPassword={formData.confirmPassword}
           skills={formData.skills}
+          selectedOficiosIds={formData.selectedOficiosIds}
           onPasswordChange={(value) => handleChange('password', value)}
           onConfirmPasswordChange={(value) => handleChange('confirmPassword', value)}
           onSkillsChange={(value) => handleChange('skills', value)}
+          onOficiosChange={(value) => handleChange('selectedOficiosIds', value)}
           errors={errors}
         />
       )}

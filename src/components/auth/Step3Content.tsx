@@ -1,13 +1,17 @@
 import { AlertCircle } from 'lucide-react'
+import { MultiSelect } from '@/components/ui/MultiSelect'
+import { oficios } from '@/lib/oficios'
 
 interface Step3ContentProps {
   selectedRole: 'client' | 'provider'
   password: string
   confirmPassword: string
   skills: string[]
+  selectedOficiosIds?: number[]
   onPasswordChange: (password: string) => void
   onConfirmPasswordChange: (confirmPassword: string) => void
   onSkillsChange: (skills: string[]) => void
+  onOficiosChange?: (oficiosIds: number[]) => void
   errors: { [key: string]: string }
 }
 
@@ -16,9 +20,11 @@ export function Step3Content({
   password,
   confirmPassword,
   skills,
+  selectedOficiosIds = [],
   onPasswordChange,
   onConfirmPasswordChange,
   onSkillsChange,
+  onOficiosChange,
   errors,
 }: Step3ContentProps) {
   const renderErrorMessage = (fieldName: string) => {
@@ -40,27 +46,28 @@ export function Step3Content({
 
         <div>
           <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
-            Oficios/Habilidades
+            Oficios/Habilidades <span className="text-red-500">*</span>
           </label>
-          <textarea
-            value={skills.join(', ')}
-            onChange={(e) => {
-              const skillsArray = e.target.value
-                .split(',')
-                .map((skill) => skill.trim())
-                .filter((skill) => skill)
-              onSkillsChange(skillsArray)
+          <MultiSelect
+            options={oficios}
+            selectedIds={selectedOficiosIds}
+            onChange={(ids) => {
+              if (onOficiosChange) {
+                onOficiosChange(ids)
+                // También actualizar el array de strings para compatibilidad
+                const selectedNames = oficios
+                  .filter(o => ids.includes(o.id))
+                  .map(o => o.nombre)
+                onSkillsChange(selectedNames)
+              }
             }}
-            placeholder="Ej: Electricista, Plomería, Carpintería (separados por comas)"
-            rows={3}
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition ${
-              errors.skills
-                ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                : 'border-gray-300 focus:border-[#DBA668] focus:ring-[#DBA668]/20'
-            }`}
+            placeholder="Selecciona tus oficios o habilidades"
+            error={errors.skills}
           />
           {renderErrorMessage('skills')}
-          <p className="text-xs text-gray-500 mt-2">Puedes agregar múltiples oficios separándolos por comas</p>
+          <p className="text-xs text-gray-500 mt-2">
+            Puedes seleccionar múltiples oficios. Usa el buscador para encontrarlos más rápido.
+          </p>
         </div>
       </div>
     )

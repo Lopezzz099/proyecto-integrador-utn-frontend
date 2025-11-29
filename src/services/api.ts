@@ -59,4 +59,7 @@ export const ENDPOINTS = {
   // Ubicaciones
   UBICACIONES: '/ubicaciones',
   UBICACIONES_BY_ID: (id: number) => `/ubicaciones/${id}`,
+  
+  // Comentarios
+  COMENTARIOS: '/comentarios',
 } as const

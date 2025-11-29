@@ -44,8 +44,11 @@ export const updateProfessional = async (
 ): Promise<void> => {
   try {
     const response = await api.put<ApiResponse<string>>(
-      ENDPOINTS.PROFESIONALES_BY_ID(id),
-      professionalData
+      ENDPOINTS.USUARIOS,
+      {
+        id,
+        ...professionalData
+      }
     )
     
     if (response.data.error) {

@@ -5,6 +5,7 @@ import { AuthContainer } from '@/components/auth/AuthContainer'
 import { RoleSelector } from '@/components/auth/RoleSelector'
 import { LoginForm } from '@/components/auth/LoginForm'
 import { AuthLinks } from '@/components/auth/AuthLinks'
+import { AlertCircle } from 'lucide-react'
 
 interface LoginPageProps {
   initialRole?: 'resident' | 'worker'
@@ -33,19 +34,24 @@ export function LoginPage({ initialRole }: LoginPageProps) {
       setErrors({
         email: email ? '' : 'Email es requerido',
         password: password ? '' : 'Contraseña es requerida',
+        general: 'Por favor completa todos los campos',
       })
       setIsLoading(false)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
 
     try {
+      console.log('Intentando login con:', { email })
       await login(email, password)
       // Redirigir al dashboard después del login exitoso
       navigate('/dashboard')
     } catch (error: any) {
+      console.error('Error en login:', error)
       setErrors({
-        general: error.message || 'Credenciales inválidas. Intenta de nuevo.',
+        general: error.message || 'Credenciales inválidas. Por favor verifica tu email y contraseña.',
       })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } finally {
       setIsLoading(false)
     }
@@ -54,6 +60,17 @@ export function LoginPage({ initialRole }: LoginPageProps) {
   return (
     <AuthContainer title="OferTu" subtitle="Inicia sesión en tu cuenta">
       <RoleSelector selectedRole={selectedRole} onRoleChange={setSelectedRole} />
+      
+      {/* Alerta de error general */}
+      {errors.general && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="text-sm font-semibold text-red-900">Error al iniciar sesión</p>
+            <p className="text-sm text-red-700 mt-1">{errors.general}</p>
+          </div>
+        </div>
+      )}
       
       <LoginForm
         email={email}
