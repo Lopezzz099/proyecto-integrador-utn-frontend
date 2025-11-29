@@ -49,4 +49,14 @@ export const ENDPOINTS = {
   // Profesionales
   PROFESIONALES: '/usuarios/todos/profesionales',
   PROFESIONALES_BY_ID: (id: number) => `/usuarios/${id}`,
+  PROFESIONALES_BY_OFICIO: (nombre: string) => `/usuarios/oficio/${nombre}`,
+  PROFESIONALES_BY_UBICACION: (localidad: string, municipio: string) => `/usuarios/ubicacion/${localidad}/${municipio}`,
+  
+  // Oficios
+  OFICIOS: '/oficios',
+  OFICIOS_BY_ID: (id: number) => `/oficios/${id}`,
+  
+  // Ubicaciones
+  UBICACIONES: '/ubicaciones',
+  UBICACIONES_BY_ID: (id: number) => `/ubicaciones/${id}`,
 } as const

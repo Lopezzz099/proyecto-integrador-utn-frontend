@@ -1,5 +1,5 @@
 import { api, ENDPOINTS } from './api'
-import type { ApiResponse, User } from './types'
+import type { ApiResponse, User, Oficio, Ubicacion } from './types'
 
 // Obtener todos los profesionales (usuarios con rol_id 3)
 export const getAllProfessionals = async (): Promise<User[]> => {
@@ -75,28 +75,115 @@ export const deleteProfessional = async (id: number): Promise<void> => {
 
 // Filtrar profesionales por oficio
 export const filterProfessionalsBySkill = async (
-  _skill: string
+  skill: string
 ): Promise<User[]> => {
   try {
-    const professionals = await getAllProfessionals()
-    // Aquí puedes implementar un filtro adicional si el backend no lo soporta
-    return professionals
+    const response = await api.get<ApiResponse<User[]>>(
+      ENDPOINTS.PROFESIONALES_BY_OFICIO(skill)
+    )
+    
+    if (response.data.error) {
+      throw new Error('Error al obtener profesionales por oficio')
+    }
+    
+    return response.data.body
   } catch (error: any) {
-    console.error('Error filtrando profesionales:', error)
-    throw error
+    console.error('Error filtrando profesionales por oficio:', error)
+    throw new Error(error.response?.data?.body || 'Error al filtrar profesionales por oficio')
   }
 }
 
 // Filtrar profesionales por ubicación
 export const filterProfessionalsByLocation = async (
-  _location: string
+  localidad: string,
+  municipio: string
 ): Promise<User[]> => {
   try {
-    const professionals = await getAllProfessionals()
-    // Aquí puedes implementar un filtro adicional si el backend no lo soporta
-    return professionals
+    const response = await api.get<ApiResponse<User[]>>(
+      ENDPOINTS.PROFESIONALES_BY_UBICACION(localidad, municipio)
+    )
+    
+    if (response.data.error) {
+      throw new Error('Error al obtener profesionales por ubicación')
+    }
+    
+    return response.data.body
   } catch (error: any) {
-    console.error('Error filtrando profesionales:', error)
-    throw error
+    console.error('Error filtrando profesionales por ubicación:', error)
+    throw new Error(error.response?.data?.body || 'Error al filtrar profesionales por ubicación')
+  }
+}
+
+// Obtener todos los oficios
+export const getAllOficios = async (): Promise<Oficio[]> => {
+  try {
+    const response = await api.get<ApiResponse<Oficio[]>>(
+      ENDPOINTS.OFICIOS
+    )
+    
+    if (response.data.error) {
+      throw new Error('Error al obtener oficios')
+    }
+    
+    return response.data.body
+  } catch (error: any) {
+    console.error('Error obteniendo oficios:', error)
+    throw new Error(error.response?.data?.body || 'Error al obtener oficios')
+  }
+}
+
+// Obtener oficio por ID
+export const getOficioById = async (id: number): Promise<Oficio> => {
+  try {
+    const response = await api.get<ApiResponse<Oficio[]>>(
+      ENDPOINTS.OFICIOS_BY_ID(id)
+    )
+    
+    if (response.data.error) {
+      throw new Error('Error al obtener oficio')
+    }
+    
+    // El backend devuelve un array con un objeto
+    return response.data.body[0]
+  } catch (error: any) {
+    console.error('Error obteniendo oficio:', error)
+    throw new Error(error.response?.data?.body || 'Error al obtener oficio')
+  }
+}
+
+// Obtener todas las ubicaciones
+export const getAllUbicaciones = async (): Promise<Ubicacion[]> => {
+  try {
+    const response = await api.get<ApiResponse<Ubicacion[]>>(
+      ENDPOINTS.UBICACIONES
+    )
+    
+    if (response.data.error) {
+      throw new Error('Error al obtener ubicaciones')
+    }
+    
+    return response.data.body
+  } catch (error: any) {
+    console.error('Error obteniendo ubicaciones:', error)
+    throw new Error(error.response?.data?.body || 'Error al obtener ubicaciones')
+  }
+}
+
+// Obtener ubicación por ID
+export const getUbicacionById = async (id: number): Promise<Ubicacion> => {
+  try {
+    const response = await api.get<ApiResponse<Ubicacion[]>>(
+      ENDPOINTS.UBICACIONES_BY_ID(id)
+    )
+    
+    if (response.data.error) {
+      throw new Error('Error al obtener ubicación')
+    }
+    
+    // El backend devuelve un array con un objeto
+    return response.data.body[0]
+  } catch (error: any) {
+    console.error('Error obteniendo ubicación:', error)
+    throw new Error(error.response?.data?.body || 'Error al obtener ubicación')
   }
 }

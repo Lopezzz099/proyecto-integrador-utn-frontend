@@ -13,6 +13,7 @@ import { BlogPage } from './pages/BlogPage'
 import { BlogDetailPage } from './pages/BlogDetailPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { WorkerDashboardPage } from './pages/WorkerDashboardPage'
+import { ProfessionalProfilePage } from './pages/ProfessionalProfilePage'
 
 function AppContent() {
   const [currentRole, setCurrentRole] = useState<'resident' | 'worker'>(() => {
@@ -66,6 +67,16 @@ function AppContent() {
         element={
           isAuthenticated && user ? (
             user.rol_id === 3 ? <WorkerDashboardPage /> : <DashboardPage />
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        } 
+      />
+      <Route 
+        path="/professional/:id" 
+        element={
+          isAuthenticated && user ? (
+            <ProfessionalProfilePage />
           ) : (
             <Navigate to="/login" replace />
           )

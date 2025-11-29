@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout'
 import { SearchBar } from '@/components/dashboard/SearchBar'
 import { FilterPanel } from '@/components/dashboard/FilterPanel'
@@ -8,6 +9,8 @@ import type { User } from '@/services/types'
 import { SlidersHorizontal } from 'lucide-react'
 
 export function DashboardPage() {
+  const navigate = useNavigate()
+  
   // Estados de búsqueda y filtros
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Todos')
@@ -98,13 +101,11 @@ export function DashboardPage() {
   }
 
   const handleViewProfile = (workerId: string) => {
-    console.log('Ver perfil del trabajador:', workerId)
-    // Aquí puedes navegar a la página de perfil
+    navigate(`/professional/${workerId}`)
   }
 
   const handleContact = (workerId: string) => {
-    console.log('Contactar trabajador:', workerId)
-    // Aquí puedes abrir un modal de contacto o navegar a mensajes
+    navigate(`/professional/${workerId}`)
   }
 
   return (

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Filter, X, Star, MapPin, Briefcase } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { categories } from '@/data/workersData'
+import { getAllOficios, getAllUbicaciones } from '@/services/professionalService'
+import type { Oficio, Ubicacion } from '@/services/types'
 
 interface FilterPanelProps {
   selectedCategory: string
@@ -13,8 +14,6 @@ interface FilterPanelProps {
   onClearFilters: () => void
 }
 
-const locations = ['Todas', 'Centro', 'Norte', 'Sur', 'Este', 'Oeste']
-
 export function FilterPanel({
   selectedCategory,
   selectedLocation,
@@ -25,6 +24,46 @@ export function FilterPanel({
   onClearFilters
 }: FilterPanelProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const [oficios, setOficios] = useState<Oficio[]>([])
+  const [ubicaciones, setUbicaciones] = useState<Ubicacion[]>([])
+  const [loadingOficios, setLoadingOficios] = useState(true)
+  const [loadingUbicaciones, setLoadingUbicaciones] = useState(true)
+
+  // Cargar oficios desde el backend
+  useEffect(() => {
+    const loadOficios = async () => {
+      try {
+        setLoadingOficios(true)
+        const oficiosData = await getAllOficios()
+        setOficios(oficiosData)
+      } catch (error) {
+        console.error('Error cargando oficios:', error)
+        setOficios([])
+      } finally {
+        setLoadingOficios(false)
+      }
+    }
+
+    loadOficios()
+  }, [])
+
+  // Cargar ubicaciones desde el backend
+  useEffect(() => {
+    const loadUbicaciones = async () => {
+      try {
+        setLoadingUbicaciones(true)
+        const ubicacionesData = await getAllUbicaciones()
+        setUbicaciones(ubicacionesData)
+      } catch (error) {
+        console.error('Error cargando ubicaciones:', error)
+        setUbicaciones([])
+      } finally {
+        setLoadingUbicaciones(false)
+      }
+    }
+
+    loadUbicaciones()
+  }, [])
 
   const hasActiveFilters = 
     selectedCategory !== 'Todos' || 
@@ -77,13 +116,18 @@ export function FilterPanel({
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DBA668] focus:border-transparent outline-none"
+            disabled={loadingOficios}
           >
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
+            <option value="Todos">Todos</option>
+            {oficios.map((oficio) => (
+              <option key={oficio.id} value={oficio.nombre}>
+                {oficio.nombre}
               </option>
             ))}
           </select>
+          {loadingOficios && (
+            <p className="text-xs text-gray-500 mt-1">Cargando oficios...</p>
+          )}
         </div>
 
         {/* Ubicación */}
@@ -96,13 +140,21 @@ export function FilterPanel({
             value={selectedLocation}
             onChange={(e) => onLocationChange(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#DBA668] focus:border-transparent outline-none"
+            disabled={loadingUbicaciones}
           >
-            {locations.map((location) => (
-              <option key={location} value={location}>
-                {location}
+            <option value="Todas">Todas</option>
+            {ubicaciones.map((ubicacion) => (
+              <option 
+                key={ubicacion.id} 
+                value={`${ubicacion.localidad}, ${ubicacion.municipio}`}
+              >
+                {ubicacion.localidad}, {ubicacion.municipio}
               </option>
             ))}
           </select>
+          {loadingUbicaciones && (
+            <p className="text-xs text-gray-500 mt-1">Cargando ubicaciones...</p>
+          )}
         </div>
 
         {/* Calificación mínima */}
