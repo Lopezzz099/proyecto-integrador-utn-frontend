@@ -63,7 +63,7 @@ export function ProfessionalProfilePage() {
   }
 
   const handleAddComment = async (comentario: string, estrellas: number) => {
-    if (!user?.id || !id) {
+    if (!user?.id || !professional?.profesional?.id) {
       throw new Error('Usuario o profesional no válido')
     }
 
@@ -71,7 +71,7 @@ export function ProfessionalProfilePage() {
       await createComentario({
         comentario,
         estrellas,
-        profesional_id: parseInt(id),
+        profesional_id: professional.profesional.id,
         usuario_id: user.id,
       })
 

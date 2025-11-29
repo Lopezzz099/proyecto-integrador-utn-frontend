@@ -15,7 +15,6 @@ export function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const [selectedLocation, setSelectedLocation] = useState('Todas')
-  const [minRating, setMinRating] = useState(0)
   const [sortBy, setSortBy] = useState<'rating'>('rating')
   const [professionals, setProfessionals] = useState<User[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -76,10 +75,7 @@ export function DashboardPage() {
         selectedLocation === 'Todas' || 
         worker.locations.some(loc => `${loc?.localidad || ''}, ${loc?.municipio || ''}` === selectedLocation)
 
-      // Filtro de calificación
-      const matchesRating = (worker.rating || 0) >= minRating
-
-      return matchesSearch && matchesCategory && matchesLocation && matchesRating
+      return matchesSearch && matchesCategory && matchesLocation
     })
 
     // Ordenar
@@ -91,12 +87,11 @@ export function DashboardPage() {
     })
 
     return filtered
-  }, [searchQuery, selectedCategory, selectedLocation, minRating, sortBy, professionals])
+  }, [searchQuery, selectedCategory, selectedLocation, sortBy, professionals])
 
   const handleClearFilters = () => {
     setSelectedCategory('Todos')
     setSelectedLocation('Todas')
-    setMinRating(0)
     setSearchQuery('')
   }
 
@@ -136,10 +131,8 @@ export function DashboardPage() {
             <FilterPanel
               selectedCategory={selectedCategory}
               selectedLocation={selectedLocation}
-              minRating={minRating}
               onCategoryChange={setSelectedCategory}
               onLocationChange={setSelectedLocation}
-              onRatingChange={setMinRating}
               onClearFilters={handleClearFilters}
             />
           </div>

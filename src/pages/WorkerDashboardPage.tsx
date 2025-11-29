@@ -133,6 +133,7 @@ export function WorkerDashboardPage() {
       )
       
       const updateData = {
+        rol_id: user.rol_id,
         ubicacion: {
           localidad: ubicacionesCompletas[0].municipio,
           municipio: ubicacionesCompletas[0].localidad,
