@@ -49,7 +49,7 @@ export function ContactModal({
         className="bg-white rounded-lg max-w-md w-full shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
+        {}
         <div className="flex items-center justify-between p-6 border-b">
           <div className="flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-[#DBA668]" />
@@ -65,7 +65,7 @@ export function ContactModal({
           </button>
         </div>
 
-        {/* Body */}
+        {}
         <div className="p-6">
           <p className="text-gray-600 mb-4">
             Envía un mensaje a <span className="font-semibold text-[#1F1F1F]">{professionalName}</span>
@@ -95,7 +95,7 @@ export function ContactModal({
           </div>
         </div>
 
-        {/* Footer */}
+        {}
         <div className="flex gap-3 p-6 border-t bg-gray-50 rounded-b-lg">
           <Button
             onClick={onClose}

@@ -70,7 +70,7 @@ export function BenefitsResident() {
           ))}
         </div>
 
-        {/* Problemas que resuelve */}
+        {}
         <div className="mt-16">
           <h3 className="text-3xl font-bold text-center mb-12 text-[#1F1F1F]">
             Problemas que Resolvemos

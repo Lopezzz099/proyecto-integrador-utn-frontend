@@ -5,7 +5,7 @@ export function AboutStory() {
         <h2 className="text-4xl font-bold mb-12 text-[#1F1F1F]">Nuestra Historia</h2>
 
         <div className="space-y-8">
-          {/* Inicio como proyecto familiar */}
+          {}
           <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668]">
             <h3 className="text-2xl font-bold mb-4 text-[#1F1F1F]">Un Proyecto Familiar</h3>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -16,7 +16,7 @@ export function AboutStory() {
             </p>
           </div>
 
-          {/* Oportunidad de la carrera */}
+          {}
           <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668]">
             <h3 className="text-2xl font-bold mb-4 text-[#1F1F1F]">La Oportunidad que Nos Impulsó</h3>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -28,7 +28,7 @@ export function AboutStory() {
             </p>
           </div>
 
-          {/* Problema a solucionar */}
+          {}
           <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668]">
             <h3 className="text-2xl font-bold mb-4 text-[#1F1F1F]">El Problema que Vimos en Nuestro Barrio</h3>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -40,7 +40,7 @@ export function AboutStory() {
             </p>
           </div>
 
-          {/* Nuestra solución */}
+          {}
           <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668]">
             <h3 className="text-2xl font-bold mb-4 text-[#1F1F1F]">Nuestra Solución</h3>
             <p className="text-lg text-gray-700 leading-relaxed">

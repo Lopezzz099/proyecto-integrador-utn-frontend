@@ -39,7 +39,7 @@ export function AddCommentModal({
     try {
       setIsSubmitting(true)
       await onSubmit(comentario, estrellas)
-      // El modal se cerrará y la página se recargará desde el componente padre
+      
     } catch (err: any) {
       setError(err.message || 'Error al enviar el comentario')
       setIsSubmitting(false)
@@ -124,7 +124,7 @@ export function AddCommentModal({
             )}
           </div>
 
-          {/* Comentario */}
+          {}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Tu comentario
@@ -143,14 +143,14 @@ export function AddCommentModal({
             </p>
           </div>
 
-          {/* Error */}
+          {}
           {error && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-sm text-red-800">{error}</p>
             </div>
           )}
 
-          {/* Info */}
+          {}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm text-blue-800">
               Tu comentario ayudará a otros usuarios a tomar mejores decisiones.
@@ -158,7 +158,7 @@ export function AddCommentModal({
           </div>
         </div>
 
-        {/* Footer */}
+        {}
         <div className="flex gap-3 p-6 border-t bg-gray-50 rounded-b-lg">
           <Button
             onClick={handleClose}

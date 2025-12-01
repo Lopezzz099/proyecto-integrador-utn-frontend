@@ -28,7 +28,7 @@ export function WorkerDashboardPage() {
   const [isEditing, setIsEditing] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   
-  // Campos editables
+  
   const [descripcion, setDescripcion] = useState('')
   const [disponibilidad, setDisponibilidad] = useState('')
   const [estado, setEstado] = useState(true)
@@ -122,12 +122,12 @@ export function WorkerDashboardPage() {
     try {
       setIsSaving(true)
       
-      // Convertir IDs de oficios a nombres
+      
       const oficiosNombres = oficios
         .filter(o => selectedOficiosIds.includes(o.id))
         .map(o => o.nombre)
       
-      // Filtrar ubicaciones completas
+      
       const ubicacionesCompletas = ubicaciones.filter(ub => 
         ub.municipio.trim() && ub.localidad.trim()
       )
@@ -151,7 +151,7 @@ export function WorkerDashboardPage() {
       console.log('Datos a actualizar:', updateData)
       await updateProfessional(user.id, updateData)
       
-      // Recargar datos sin refrescar la página
+      
       await loadProfessionalData()
       setIsEditing(false)
     } catch (error: any) {
@@ -274,11 +274,11 @@ export function WorkerDashboardPage() {
           )}
         </div>
 
-        {/* Contenido */}
+        {}
         {isEditing ? (
-          // MODO EDICIÓN
+          
           <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
-            {/* Descripción */}
+            {}
             <div>
               <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
                 Descripción <span className="text-red-500">*</span>
@@ -302,7 +302,7 @@ export function WorkerDashboardPage() {
               )}
             </div>
 
-            {/* Estado */}
+            {}
             <div>
               <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
                 Estado
@@ -333,7 +333,7 @@ export function WorkerDashboardPage() {
               </div>
             </div>
 
-            {/* Disponibilidad */}
+            {}
             <div>
               <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
                 Disponibilidad <span className="text-red-500">*</span>
@@ -357,7 +357,7 @@ export function WorkerDashboardPage() {
               )}
             </div>
 
-            {/* Ubicaciones Múltiples */}
+            {}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-[#1F1F1F]">
@@ -638,9 +638,9 @@ export function WorkerDashboardPage() {
               )}
             </div>
 
-            {/* Columna Lateral */}
+            {}
             <div className="space-y-6">
-              {/* Oficios */}
+              {}
               {professionalData.profesional?.oficios && professionalData.profesional.oficios.length > 0 && (
                 <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                   <h3 className="text-lg font-bold text-[#1F1F1F] mb-4 flex items-center gap-2">
@@ -660,7 +660,7 @@ export function WorkerDashboardPage() {
                 </div>
               )}
 
-              {/* Ubicaciones */}
+              {}
               {professionalData.profesional?.ubicaciones && professionalData.profesional.ubicaciones.length > 0 && (
                 <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
                   <h3 className="text-lg font-bold text-[#1F1F1F] mb-4 flex items-center gap-2">
@@ -684,7 +684,7 @@ export function WorkerDashboardPage() {
           </div>
         )}
 
-        {/* Información adicional */}
+        {}
         {!isEditing && (
           <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-sm text-blue-800">

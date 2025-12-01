@@ -1,7 +1,7 @@
 import { api, ENDPOINTS } from './api'
 import type { ApiResponse, User, RegisterUserData, RegisterProfessionalData } from './types'
 
-// Obtener usuario por ID
+
 export const getUserById = async (id: number): Promise<User> => {
   try {
     const response = await api.get<ApiResponse<User>>(
@@ -19,7 +19,7 @@ export const getUserById = async (id: number): Promise<User> => {
   }
 }
 
-// Registrar usuario (cliente)
+
 export const registerUser = async (userData: RegisterUserData): Promise<void> => {
   try {
     const response = await api.post<ApiResponse<string>>(
@@ -36,7 +36,7 @@ export const registerUser = async (userData: RegisterUserData): Promise<void> =>
   }
 }
 
-// Registrar profesional
+
 export const registerProfessional = async (
   professionalData: RegisterProfessionalData
 ): Promise<void> => {
@@ -55,7 +55,7 @@ export const registerProfessional = async (
   }
 }
 
-// Obtener todos los usuarios (requiere rol admin)
+
 export const getAllUsers = async (): Promise<User[]> => {
   try {
     const response = await api.get<ApiResponse<User[]>>(ENDPOINTS.USUARIOS)
@@ -71,7 +71,7 @@ export const getAllUsers = async (): Promise<User[]> => {
   }
 }
 
-// Actualizar usuario
+
 export const updateUser = async (id: number, userData: Partial<User>): Promise<void> => {
   try {
     const response = await api.put<ApiResponse<string>>(
@@ -88,7 +88,7 @@ export const updateUser = async (id: number, userData: Partial<User>): Promise<v
   }
 }
 
-// Eliminar usuario
+
 export const deleteUser = async (id: number): Promise<void> => {
   try {
     const response = await api.delete<ApiResponse<string>>(

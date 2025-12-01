@@ -21,7 +21,7 @@ export function BlogDetailPage({ onRoleChange, currentRole = 'resident' }: BlogD
     window.scrollTo(0, 0)
   }, [blogId])
 
-  // Si no se encuentra el artículo, redirigir al blog
+  
   useEffect(() => {
     if (!blogPost) {
       navigate('/blog')

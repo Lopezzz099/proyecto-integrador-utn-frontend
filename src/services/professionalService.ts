@@ -1,7 +1,7 @@
 import { api, ENDPOINTS } from './api'
 import type { ApiResponse, User, Oficio, Ubicacion } from './types'
 
-// Obtener todos los profesionales (usuarios con rol_id 3)
+
 export const getAllProfessionals = async (): Promise<User[]> => {
   try {
     const response = await api.get<ApiResponse<User[]>>(
@@ -19,7 +19,7 @@ export const getAllProfessionals = async (): Promise<User[]> => {
   }
 }
 
-// Obtener profesional por ID
+
 export const getProfessionalById = async (id: number): Promise<User> => {
   try {
     const response = await api.get<ApiResponse<User>>(
@@ -37,7 +37,7 @@ export const getProfessionalById = async (id: number): Promise<User> => {
   }
 }
 
-// Actualizar profesional
+
 export const updateProfessional = async (
   id: number,
   professionalData: Partial<User>
@@ -60,7 +60,7 @@ export const updateProfessional = async (
   }
 }
 
-// Eliminar profesional
+
 export const deleteProfessional = async (id: number): Promise<void> => {
   try {
     const response = await api.delete<ApiResponse<string>>(
@@ -76,7 +76,7 @@ export const deleteProfessional = async (id: number): Promise<void> => {
   }
 }
 
-// Filtrar profesionales por oficio
+
 export const filterProfessionalsBySkill = async (
   skill: string
 ): Promise<User[]> => {
@@ -96,7 +96,7 @@ export const filterProfessionalsBySkill = async (
   }
 }
 
-// Filtrar profesionales por ubicación
+
 export const filterProfessionalsByLocation = async (
   localidad: string,
   municipio: string
@@ -117,7 +117,7 @@ export const filterProfessionalsByLocation = async (
   }
 }
 
-// Obtener todos los oficios
+
 export const getAllOficios = async (): Promise<Oficio[]> => {
   try {
     const response = await api.get<ApiResponse<Oficio[]>>(
@@ -135,7 +135,7 @@ export const getAllOficios = async (): Promise<Oficio[]> => {
   }
 }
 
-// Obtener oficio por ID
+
 export const getOficioById = async (id: number): Promise<Oficio> => {
   try {
     const response = await api.get<ApiResponse<Oficio[]>>(
@@ -146,7 +146,7 @@ export const getOficioById = async (id: number): Promise<Oficio> => {
       throw new Error('Error al obtener oficio')
     }
     
-    // El backend devuelve un array con un objeto
+    
     return response.data.body[0]
   } catch (error: any) {
     console.error('Error obteniendo oficio:', error)
@@ -154,7 +154,7 @@ export const getOficioById = async (id: number): Promise<Oficio> => {
   }
 }
 
-// Obtener todas las ubicaciones
+
 export const getAllUbicaciones = async (): Promise<Ubicacion[]> => {
   try {
     const response = await api.get<ApiResponse<Ubicacion[]>>(
@@ -172,7 +172,7 @@ export const getAllUbicaciones = async (): Promise<Ubicacion[]> => {
   }
 }
 
-// Obtener ubicación por ID
+
 export const getUbicacionById = async (id: number): Promise<Ubicacion> => {
   try {
     const response = await api.get<ApiResponse<Ubicacion[]>>(
@@ -183,7 +183,7 @@ export const getUbicacionById = async (id: number): Promise<Ubicacion> => {
       throw new Error('Error al obtener ubicación')
     }
     
-    // El backend devuelve un array con un objeto
+    
     return response.data.body[0]
   } catch (error: any) {
     console.error('Error obteniendo ubicación:', error)

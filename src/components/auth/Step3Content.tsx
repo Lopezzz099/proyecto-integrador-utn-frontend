@@ -19,7 +19,6 @@ export function Step3Content({
   selectedRole,
   password,
   confirmPassword,
-  skills,
   selectedOficiosIds = [],
   onPasswordChange,
   onConfirmPasswordChange,
@@ -54,7 +53,7 @@ export function Step3Content({
             onChange={(ids) => {
               if (onOficiosChange) {
                 onOficiosChange(ids)
-                // También actualizar el array de strings para compatibilidad
+                
                 const selectedNames = oficios
                   .filter(o => ids.includes(o.id))
                   .map(o => o.nombre)

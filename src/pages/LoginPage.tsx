@@ -29,7 +29,7 @@ export function LoginPage({ initialRole }: LoginPageProps) {
     setErrors({})
     setIsLoading(true)
     
-    // Validación básica
+    
     if (!email || !password) {
       setErrors({
         email: email ? '' : 'Email es requerido',
@@ -44,7 +44,7 @@ export function LoginPage({ initialRole }: LoginPageProps) {
     try {
       console.log('Intentando login con:', { email })
       await login(email, password)
-      // Redirigir al dashboard después del login exitoso
+      
       navigate('/dashboard')
     } catch (error: any) {
       console.error('Error en login:', error)
@@ -61,7 +61,7 @@ export function LoginPage({ initialRole }: LoginPageProps) {
     <AuthContainer title="OferTu" subtitle="Inicia sesión en tu cuenta">
       <RoleSelector selectedRole={selectedRole} onRoleChange={setSelectedRole} />
       
-      {/* Alerta de error general */}
+      {}
       {errors.general && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
@@ -82,14 +82,14 @@ export function LoginPage({ initialRole }: LoginPageProps) {
         errors={errors}
       />
 
-      {/* Divider */}
+      {}
       <div className="flex items-center my-6">
         <div className="flex-1 border-t border-gray-300"></div>
         <span className="px-4 text-gray-500 text-sm">O</span>
         <div className="flex-1 border-t border-gray-300"></div>
       </div>
 
-      {/* Datos de prueba */}
+      {}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-6">
         <p className="text-xs font-semibold text-blue-900 mb-1">Demo - Credenciales de prueba:</p>
         <p className="text-xs text-blue-700">Email: demo@ofertu.com</p>

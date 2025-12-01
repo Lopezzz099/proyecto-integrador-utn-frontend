@@ -140,7 +140,7 @@ export function ContactForm() {
           {/* Campos especiales para artículos */}
           {formData.type === 'articulo' && (
             <>
-              {/* Título del Artículo */}
+              {}
               <div className="mb-6 p-4 bg-[#DBA668] bg-opacity-10 rounded-lg border border-[#DBA668]">
                 <label htmlFor="articleTitle" className="block text-[#1F1F1F] font-bold mb-2">
                   Título del Artículo *
@@ -156,7 +156,7 @@ export function ContactForm() {
                 />
               </div>
 
-              {/* Categoría del Artículo */}
+              {}
               <div className="mb-6 p-4 bg-[#DBA668] bg-opacity-10 rounded-lg border border-[#DBA668]">
                 <label htmlFor="category" className="block text-[#1F1F1F] font-bold mb-2">
                   Categoría del Artículo *
@@ -180,7 +180,7 @@ export function ContactForm() {
             </>
           )}
 
-          {/* Mensaje */}
+          {}
           <div className="mb-6">
             <label htmlFor="message" className="block text-[#1F1F1F] font-bold mb-2">
               {formData.type === 'articulo' ? 'Contenido del Artículo *' : 'Mensaje *'}
@@ -197,7 +197,7 @@ export function ContactForm() {
             ></textarea>
           </div>
 
-          {/* Submit Button */}
+          {}
           <div className="flex gap-4">
             <Button
               type="submit"

@@ -25,7 +25,7 @@ export function FilterPanel({
   const [loadingOficios, setLoadingOficios] = useState(true)
   const [loadingUbicaciones, setLoadingUbicaciones] = useState(true)
 
-  // Cargar oficios desde el backend
+  
   useEffect(() => {
     const loadOficios = async () => {
       try {
@@ -43,7 +43,7 @@ export function FilterPanel({
     loadOficios()
   }, [])
 
-  // Cargar ubicaciones desde el backend
+  
   useEffect(() => {
     const loadUbicaciones = async () => {
       try {
@@ -67,7 +67,7 @@ export function FilterPanel({
 
   return (
     <>
-      {/* Botón para móvil */}
+      {}
       <div className="lg:hidden mb-4">
         <Button
           onClick={() => setIsOpen(!isOpen)}
@@ -78,7 +78,7 @@ export function FilterPanel({
         </Button>
       </div>
 
-      {/* Panel de filtros */}
+      {}
       <div className={`
         ${isOpen ? 'block' : 'hidden'} lg:block
         bg-white rounded-lg shadow-md p-6 space-y-6
@@ -101,7 +101,7 @@ export function FilterPanel({
           )}
         </div>
 
-        {/* Oficios */}
+        {}
         <div>
           <label className="block text-sm font-semibold text-[#1F1F1F] mb-2 flex items-center gap-1">
             <Briefcase className="w-4 h-4" />
@@ -125,7 +125,7 @@ export function FilterPanel({
           )}
         </div>
 
-        {/* Ubicación */}
+        {}
         <div>
           <label className="block text-sm font-semibold text-[#1F1F1F] mb-2 flex items-center gap-1">
             <MapPin className="w-4 h-4" />

@@ -3,7 +3,7 @@ import * as authService from '../services/authService'
 import * as userService from '../services/userService'
 import type { User, UserRole, RegisterUserData, RegisterProfessionalData } from '../services/types'
 
-// Re-exportar tipos para compatibilidad
+
 export type { UserRole, User }
 
 interface AuthContextType {
@@ -25,7 +25,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  // Inicializar: cargar usuario si hay token válido
+  
   useEffect(() => {
     const initAuth = async () => {
       try {
@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (savedToken && authService.isAuthenticated()) {
           const decoded = authService.getDecodedToken()
           if (decoded) {
-            // Obtener datos completos del usuario
+            
             const userData = await userService.getUserById(decoded.id)
             setUser(userData)
             setToken(savedToken)
@@ -54,16 +54,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       setIsLoading(true)
       
-      // Llamar al servicio de login
+      
       const receivedToken = await authService.login({ email, password })
       
-      // Decodificar token para obtener el ID del usuario
+      
       const decoded = authService.getDecodedToken()
       if (!decoded) {
         throw new Error('Token inválido')
       }
       
-      // Obtener datos completos del usuario
+      
       const userData = await userService.getUserById(decoded.id)
       
       setUser(userData)
@@ -80,7 +80,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       setIsLoading(true)
       
-      // Determinar si es profesional o usuario
+      
       const isProfessional = userData.rol_id === 3
       
       if (isProfessional) {
@@ -89,7 +89,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await userService.registerUser(userData as RegisterUserData)
       }
       
-      // Después del registro exitoso, hacer login automáticamente
+      
       await login(userData.email, userData.password)
     } catch (error: any) {
       console.error('Error en registro:', error)

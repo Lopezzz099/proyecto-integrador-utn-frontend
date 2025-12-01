@@ -11,7 +11,7 @@ import { SlidersHorizontal } from 'lucide-react'
 export function DashboardPage() {
   const navigate = useNavigate()
   
-  // Estados de búsqueda y filtros
+  
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const [selectedLocation, setSelectedLocation] = useState('Todas')
@@ -20,7 +20,7 @@ export function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Cargar profesionales desde el backend
+  
   useEffect(() => {
     const loadProfessionals = async () => {
       try {
@@ -39,11 +39,11 @@ export function DashboardPage() {
     loadProfessionals()
   }, [])
 
-  // Filtrar y ordenar trabajadores
+  
   const filteredWorkers = useMemo(() => {
-    // Transformar datos del backend al formato esperado por WorkerCard
+    
     const dataSource = professionals
-      .filter(prof => prof.profesional) // Solo incluir usuarios que tienen datos de profesional
+      .filter(prof => prof.profesional) 
       .map(prof => ({
         id: prof.id.toString(),
         name: prof.nombre || 'Sin nombre',
@@ -78,7 +78,7 @@ export function DashboardPage() {
       return matchesSearch && matchesCategory && matchesLocation
     })
 
-    // Ordenar
+    
     filtered.sort((a, b) => {
       if (sortBy === 'rating') {
         return b.rating - a.rating
@@ -158,7 +158,7 @@ export function DashboardPage() {
               </div>
             </div>
 
-            {/* Grid de tarjetas */}
+            {}
             {isLoading ? (
               <div className="text-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#DBA668] mx-auto"></div>

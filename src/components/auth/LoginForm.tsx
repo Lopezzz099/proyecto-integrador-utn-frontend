@@ -19,7 +19,7 @@ export function LoginForm({
 }: LoginFormProps) {
   return (
     <form onSubmit={onSubmit} className="space-y-4">
-      {/* Email Input */}
+      {}
       <div>
         <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">Email</label>
         <input
@@ -37,7 +37,7 @@ export function LoginForm({
         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
       </div>
 
-      {/* Password Input */}
+      {}
       <div>
         <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">Contraseña</label>
         <input
@@ -55,14 +55,14 @@ export function LoginForm({
         {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
       </div>
 
-      {/* General Error Message */}
+      {}
       {errors.general && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-3">
           <p className="text-red-600 text-sm">{errors.general}</p>
         </div>
       )}
 
-      {/* Submit Button */}
+      {}
       <button
         type="submit"
         disabled={isLoading}

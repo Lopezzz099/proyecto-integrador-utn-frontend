@@ -6,7 +6,7 @@ export function PrivacyContent() {
   return (
     <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Introduction */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">1. Introducción</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -16,7 +16,7 @@ export function PrivacyContent() {
           </p>
         </div>
 
-        {/* Information We Collect */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">2. Información que Recopilamos</h2>
           <div className="space-y-4 text-lg text-gray-700">
@@ -43,7 +43,7 @@ export function PrivacyContent() {
           </div>
         </div>
 
-        {/* How We Use Your Information */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">3. Cómo Usamos tu Información</h2>
           <ul className="space-y-3 text-lg text-gray-700 list-disc list-inside">
@@ -58,7 +58,7 @@ export function PrivacyContent() {
           </ul>
         </div>
 
-        {/* Data Sharing */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">4. Compartición de Datos</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -72,7 +72,7 @@ export function PrivacyContent() {
           </ul>
         </div>
 
-        {/* Data Security */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">5. Seguridad de Datos</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -87,7 +87,7 @@ export function PrivacyContent() {
           </ul>
         </div>
 
-        {/* Your Rights */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">6. Tus Derechos</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -103,7 +103,7 @@ export function PrivacyContent() {
           </ul>
         </div>
 
-        {/* Retention Period */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">7. Período de Retención</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -113,7 +113,7 @@ export function PrivacyContent() {
           </p>
         </div>
 
-        {/* Third-Party Links */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">8. Enlaces a Terceros</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -122,7 +122,7 @@ export function PrivacyContent() {
           </p>
         </div>
 
-        {/* Contact */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668]">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">9. Contacto</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">

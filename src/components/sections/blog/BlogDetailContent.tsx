@@ -11,7 +11,7 @@ export function BlogDetailContent({ content }: BlogDetailContentProps) {
   return (
     <section className="py-20 px-4 bg-[#EEEEEE]">
       <div className="max-w-4xl mx-auto">
-        {/* Article Content */}
+        {}
         <article className="bg-white rounded-lg shadow-md p-8 md:p-12 mb-12">
           <div 
             className="prose prose-lg max-w-none
@@ -24,7 +24,7 @@ export function BlogDetailContent({ content }: BlogDetailContentProps) {
           />
         </article>
 
-        {/* Share & Actions */}
+        {}
         <div className="bg-white rounded-lg shadow-md p-8">
           <h3 className="text-2xl font-bold text-[#1F1F1F] mb-4">¿Te gustó este artículo?</h3>
           <p className="text-gray-700 mb-6">

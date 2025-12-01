@@ -22,12 +22,12 @@ function AppContent() {
   })
   const { isAuthenticated, user, isLoading } = useAuth()
 
-  // Guardar el rol en localStorage cada vez que cambia
+  
   useEffect(() => {
     localStorage.setItem('currentRole', currentRole)
   }, [currentRole])
 
-  // Mostrar loader mientras se verifica la autenticación
+  
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -41,7 +41,7 @@ function AppContent() {
 
   return (
     <Routes>
-      {/* Rutas públicas */}
+      {}
       <Route 
         path="/" 
         element={
@@ -61,7 +61,7 @@ function AppContent() {
       <Route path="/blog" element={<BlogPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
       <Route path="/blog/:id" element={<BlogDetailPage onRoleChange={setCurrentRole} currentRole={currentRole} />} />
 
-      {/* Rutas protegidas */}
+      {}
       <Route 
         path="/dashboard" 
         element={

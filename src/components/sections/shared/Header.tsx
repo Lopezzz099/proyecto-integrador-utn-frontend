@@ -22,7 +22,7 @@ export function Header({ currentRole, onRoleChange }: HeaderProps) {
         </div>
         
         <div className="flex items-center gap-4">
-          {/* Botón para cambiar de vista */}
+          {}
           <Button
             onClick={() => onRoleChange?.(currentRole === 'resident' ? 'worker' : 'resident')}
             variant="outline"
@@ -31,7 +31,7 @@ export function Header({ currentRole, onRoleChange }: HeaderProps) {
             {currentRole === 'resident' ? 'Soy Trabajador' : 'Soy Residente'}
           </Button>
           
-          {/* Botones de autenticación */}
+          {}
           <Button
             variant="ghost"
             className="text-[#EEEEEE] hover:text-[#DBA668]"

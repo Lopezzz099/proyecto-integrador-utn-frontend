@@ -9,7 +9,7 @@ interface ProfileInfoProps {
 export function ProfileInfo({ profile }: ProfileInfoProps) {
   return (
     <div className="grid md:grid-cols-2 gap-6">
-      {/* Información de contacto */}
+      {}
       <Card>
         <CardContent className="p-6">
           <h3 className="text-xl font-bold text-[#1F1F1F] mb-4">Información de Contacto</h3>
@@ -39,7 +39,7 @@ export function ProfileInfo({ profile }: ProfileInfoProps) {
         </CardContent>
       </Card>
 
-      {/* Información profesional */}
+      {}
       <Card>
         <CardContent className="p-6">
           <h3 className="text-xl font-bold text-[#1F1F1F] mb-4">Información Profesional</h3>
@@ -69,7 +69,7 @@ export function ProfileInfo({ profile }: ProfileInfoProps) {
         </CardContent>
       </Card>
 
-      {/* Descripción */}
+      {}
       <Card className="md:col-span-2">
         <CardContent className="p-6">
           <h3 className="text-xl font-bold text-[#1F1F1F] mb-4">Sobre mí</h3>
@@ -77,7 +77,7 @@ export function ProfileInfo({ profile }: ProfileInfoProps) {
         </CardContent>
       </Card>
 
-      {/* Certificaciones */}
+      {}
       {profile.certifications.length > 0 && (
         <Card>
           <CardContent className="p-6">
@@ -97,7 +97,7 @@ export function ProfileInfo({ profile }: ProfileInfoProps) {
         </Card>
       )}
 
-      {/* Idiomas */}
+      {}
       {profile.languages.length > 0 && (
         <Card>
           <CardContent className="p-6">

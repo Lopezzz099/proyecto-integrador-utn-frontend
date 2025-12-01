@@ -1,12 +1,19 @@
-# 🏠 OferTu - Frontend
+# ��� OferTu - Plataforma de Servicios para el Hogar
 
-Plataforma web para conectar residentes con profesionales de servicios del hogar.
+Aplicación web para conectar residentes con profesionales de servicios del hogar en la provincia de Buenos Aires, Argentina.
 
-## 🚀 Inicio Rápido
+## ��� Descripción del Proyecto
+
+OferTu es una plataforma que facilita la conexión entre personas que necesitan servicios para el hogar y profesionales capacitados. Los usuarios pueden buscar y filtrar profesionales por oficio y ubicación, mientras que los profesionales pueden crear y gestionar sus perfiles.
+
+## ��� Inicio Rápido
 
 ```bash
 # Instalar dependencias
 npm install
+
+# Configurar variables de entorno
+cp .env.example .env
 
 # Iniciar en modo desarrollo
 npm run dev
@@ -15,88 +22,174 @@ npm run dev
 npm run build
 ```
 
-## 📋 Requisitos
+## ��� Requisitos Previos
 
-- Node.js 16+
-- npm o yarn
-- Backend corriendo en `http://localhost:4000` (ver configuración)
-
-## 🔌 Integración con Backend
-
-El proyecto está **completamente integrado** con el backend. Ver documentación completa:
-
-- 📖 **[INTEGRATION_SUMMARY.md](./INTEGRATION_SUMMARY.md)** - Resumen de la integración
-- 📚 **[BACKEND_INTEGRATION.md](./BACKEND_INTEGRATION.md)** - Documentación técnica
-- 🧪 **[TESTING_GUIDE.md](./TESTING_GUIDE.md)** - Guía de pruebas
+- **Node.js** 16 o superior
+- **npm** o **yarn**
+- **Backend** corriendo en `http://localhost:4000`
 
 ## ⚙️ Configuración
 
-Crea un archivo `.env` basado en `.env.example`:
+Crea un archivo `.env` en la raíz del proyecto:
 
 ```env
 VITE_API_BASE_URL=http://localhost:4000/api
 ```
 
-## 🛠️ Stack Tecnológico
+## ���️ Tecnologías Utilizadas
 
-- **React 19** - Framework UI
-- **TypeScript** - Tipado estático
-- **Vite** - Build tool
-- **Tailwind CSS** - Estilos
-- **Axios** - Cliente HTTP
-- **Zod** - Validación de formularios
-- **Lucide React** - Iconos
+### Frontend
+- **React 19.1** - Biblioteca de UI
+- **TypeScript 5.8** - Tipado estático
+- **Vite 7.1** - Build tool y dev server
+- **React Router DOM 7.9** - Enrutamiento
 
-## 📁 Estructura del Proyecto
+### Estilos
+- **Tailwind CSS 3.4** - Framework de utilidades CSS
+- **Tailwind Animate** - Animaciones
+- **Lucide React 0.542** - Librería de iconos
+- **Class Variance Authority** - Gestión de variantes de componentes
+- **clsx** - Utilidad para clases condicionales
+
+### Estado y Datos
+- **Axios 1.13** - Cliente HTTP para API REST
+- **React Context API** - Gestión de estado de autenticación
+
+### Validación y Utilidades
+- **Zod 4.1** - Validación de esquemas y formularios
+- **Radix UI** - Componentes primitivos accesibles
+
+### Desarrollo
+- **ESLint 9.33** - Linter de código
+- **TypeScript ESLint** - Reglas de ESLint para TypeScript
+- **PostCSS & Autoprefixer** - Procesamiento de CSS
+
+## ��� APIs Utilizadas
+
+### API Backend Propia
+**Base URL:** `http://localhost:4000/api`
+
+#### Endpoints de Usuarios
+- `POST /usuarios` - Registrar usuario o profesional
+- `POST /usuarios/login` - Iniciar sesión
+- `GET /usuarios/:id` - Obtener usuario por ID
+- `PUT /usuarios/:id` - Actualizar usuario
+- `DELETE /usuarios/:id` - Eliminar usuario
+
+#### Endpoints de Profesionales
+- `GET /usuarios/todos/profesionales` - Listar profesionales
+- `GET /usuarios/oficio/:nombre` - Filtrar por oficio
+- `GET /usuarios/ubicacion/:localidad/:municipio` - Filtrar por ubicación
+
+#### Endpoints de Oficios
+- `GET /oficios` - Listar oficios disponibles
+- `GET /oficios/:id` - Obtener oficio por ID
+
+#### Endpoints de Ubicaciones
+- `GET /ubicaciones` - Listar ubicaciones
+- `GET /ubicaciones/:id` - Obtener ubicación por ID
+
+#### Endpoints de Comentarios
+- `POST /comentarios` - Crear comentario/valoración
+
+### API Externa - GeoRef Argentina
+**Base URL:** `https://apis.datos.gob.ar/georef/api`
+
+Servicio de normalización de datos geográficos de Argentina (datos abiertos del gobierno).
+
+#### Endpoints Utilizados
+- `GET /municipios` - Obtener municipios de Buenos Aires
+- `GET /localidades` - Obtener localidades por municipio
+
+**Parámetros usados:**
+- `provincia=06` - Buenos Aires
+- `municipio` - Filtrar por municipio
+- `nombre` - Búsqueda por nombre
+- `max` - Cantidad máxima de resultados
+- `campos` - Campos a devolver
+
+## ��� Estructura del Proyecto
 
 ```
-src/
-├── components/          # Componentes React
-│   ├── auth/           # Componentes de autenticación
-│   ├── dashboard/      # Componentes del dashboard
-│   ├── sections/       # Secciones de páginas
-│   └── ui/             # Componentes UI reutilizables
-├── context/            # Context API (AuthContext)
-├── data/               # Datos mock
-├── lib/                # Utilidades y validaciones
-├── pages/              # Páginas principales
-├── services/           # 🆕 Servicios de API
-│   ├── api.ts
-│   ├── authService.ts
-│   ├── userService.ts
-│   ├── professionalService.ts
-│   └── types.ts
-└── App.tsx             # Componente principal
+proyecto-integrador-utn-frontend/
+├── public/                      # Archivos estáticos
+├── src/
+│   ├── assets/                  # Imágenes y recursos
+│   ├── components/              # Componentes React
+│   │   ├── auth/               # Autenticación (login, registro)
+│   │   ├── dashboard/          # Dashboard de cliente
+│   │   ├── professional/       # Componentes de profesionales
+│   │   ├── worker/             # Panel de trabajador
+│   │   ├── sections/           # Secciones de landing pages
+│   │   └── ui/                 # Componentes UI reutilizables
+│   ├── context/                # Context API
+│   │   └── AuthContext.tsx     # Contexto de autenticación
+│   ├── data/                   # Datos estáticos
+│   ├── lib/                    # Utilidades
+│   │   ├── oficios.ts          # Catálogo de oficios
+│   │   ├── utils.ts            # Funciones auxiliares
+│   │   └── validations.ts      # Validaciones con Zod
+│   ├── pages/                  # Páginas principales
+│   │   ├── LoginPage.tsx
+│   │   ├── RegisterPage.tsx
+│   │   ├── DashboardPage.tsx
+│   │   ├── WorkerDashboardPage.tsx
+│   │   ├── ProfessionalProfilePage.tsx
+│   │   └── ...
+│   ├── services/               # Servicios de API
+│   │   ├── api.ts              # Configuración de Axios
+│   │   ├── authService.ts      # Autenticación
+│   │   ├── userService.ts      # Gestión de usuarios
+│   │   ├── professionalService.ts  # Gestión de profesionales
+│   │   ├── comentarioService.ts    # Comentarios
+│   │   ├── georefService.ts    # API de GeoRef
+│   │   └── types.ts            # Tipos TypeScript
+│   ├── App.tsx                 # Componente raíz
+│   ├── main.tsx                # Punto de entrada
+│   └── index.css               # Estilos globales
+├── .env                        # Variables de entorno
+├── package.json                # Dependencias
+├── tsconfig.json               # Configuración TypeScript
+├── vite.config.ts              # Configuración Vite
+└── tailwind.config.js          # Configuración Tailwind
 ```
 
-## 🔑 Funcionalidades
+## ��� Funcionalidades Principales
 
-### ✅ Autenticación
-- Login de usuarios y profesionales
-- Registro con validación
-- JWT tokens
-- Sesión persistente
-- Logout
+### Autenticación y Registro
+- Sistema de login con JWT
+- Registro de usuarios (clientes)
+- Registro de profesionales con oficios múltiples
+- Validación de formularios con Zod
+- Sesión persistente con localStorage
+- Auto-logout al expirar token
 
-### ✅ Dashboard Cliente
+### Dashboard de Cliente
 - Búsqueda de profesionales
-- Filtros avanzados
-- Lista de profesionales desde el backend
-- Perfiles detallados
+- Filtros por oficio y ubicación geográfica
+- Visualización de perfiles profesionales
+- Sistema de contacto con profesionales
+- Valoraciones y comentarios
 
-### ✅ Dashboard Profesional
-- Perfil del trabajador
-- Gestión de oficios
-- Disponibilidad
+### Dashboard de Profesional
+- Gestión de perfil profesional
+- Edición de oficios y especialidades
+- Gestión de disponibilidad
+- Visualización de comentarios recibidos
+- Actualización de información de contacto
 
-## 🧪 Probar la Aplicación
+### Sistema de Ubicaciones
+- Integración con GeoRef Argentina
+- Autocompletado de municipios
+- Autocompletado de localidades
+- Filtrado por ubicación geográfica
+
+## �� Cómo Probar la Aplicación
 
 ### 1. Iniciar el Backend
 ```bash
-# En el directorio del backend
+cd ../backend
 npm start
-# o
-node src/app.js
 ```
 
 ### 2. Iniciar el Frontend
@@ -104,130 +197,93 @@ node src/app.js
 npm run dev
 ```
 
-### 3. Abrir en el navegador
+### 3. Acceder a la aplicación
+Abre tu navegador en: `http://localhost:5173`
+
+### 4. Crear cuentas de prueba
+
+**Registrar un Cliente:**
+1. Ir a "Registrarse"
+2. Seleccionar rol "Busco profesionales"
+3. Completar formulario
+4. Aceptar términos y condiciones
+
+**Registrar un Profesional:**
+1. Ir a "Registrarse"
+2. Seleccionar rol "Soy profesional"
+3. Completar formulario + oficios
+4. Aceptar términos y condiciones
+
+## ��� Seguridad
+
+- Autenticación mediante **JWT (JSON Web Tokens)**
+- Tokens almacenados en `localStorage`
+- Interceptores de Axios para envío automático de tokens
+- Redirección automática al login si el token expira
+- Validación de datos con **Zod** antes de enviar al backend
+- Headers CORS configurados
+
+## ��� Diseño Responsive
+
+- Diseño mobile-first
+- Adaptable a tablets y desktop
+- Componentes optimizados con Tailwind CSS
+- Navegación adaptativa
+
+## ��� Paleta de Colores
+
+- **Primario:** `#DBA668` (Dorado)
+- **Secundario:** `#1F1F1F` (Negro)
+- **Fondo:** `#FFFFFF` (Blanco)
+- **Texto:** `#333333` (Gris oscuro)
+
+## ��� Scripts Disponibles
+
+```bash
+npm run dev          # Modo desarrollo (puerto 5173)
+npm run build        # Compilar para producción
+npm run preview      # Preview de build de producción
+npm run lint         # Ejecutar ESLint
 ```
-http://localhost:5173
-```
 
-### 4. Registrar un usuario
+## ��� Integración con Backend
 
-**Cliente:**
-- Email: `cliente@example.com`
-- Contraseña: `123456`
-
-**Profesional:**
-- Email: `profesional@example.com`
-- Contraseña: `123456`
-- Oficios: `Plomería, Electricidad`
-
-## 📚 Documentación Adicional
-
-- **[AUTH_SYSTEM.md](./AUTH_SYSTEM.md)** - Sistema de autenticación
-- **[components.json](./components.json)** - Configuración de componentes
-
-## 🤝 Integración API
-
-El frontend se comunica con el backend mediante servicios en `src/services/`:
+Ejemplo de uso de servicios:
 
 ```typescript
 // Login
 import { login } from '@/services/authService'
-const token = await login({ email, password })
+const token = await login({ email: 'user@example.com', password: '123456' })
 
-// Registro
+// Registro de cliente
 import { registerUser } from '@/services/userService'
-await registerUser({ nombre, email, password, ... })
+await registerUser({
+  nombre: 'Juan Pérez',
+  email: 'juan@example.com',
+  password: '123456',
+  telefono: '1145678901',
+  condiciones: '1',
+  rol_id: 2,
+  ubicacion: { localidad: 'San Isidro', municipio: 'San Isidro' }
+})
 
 // Obtener profesionales
 import { getAllProfessionals } from '@/services/professionalService'
 const professionals = await getAllProfessionals()
+
+// Filtrar por oficio
+import { filterProfessionalsBySkill } from '@/services/professionalService'
+const plumbers = await filterProfessionalsBySkill('Plomero')
+
+// Buscar municipios
+import { searchMunicipios } from '@/services/georefService'
+const municipios = await searchMunicipios('San')
 ```
 
-## 🔒 Seguridad
+## ��� Licencia
 
-- Tokens JWT almacenados en localStorage
-- Interceptores de axios para autenticación automática
-- Redirección en caso de token expirado
-- Validación de formularios con Zod
-
-## 📱 Responsive
-
-- Diseño adaptable a móviles, tablets y desktop
-- Componentes optimizados con Tailwind CSS
-
-## 🎨 Temas
-
-- Paleta de colores personalizada (#DBA668, #1F1F1F)
-- Modo claro (modo oscuro pendiente)
+Proyecto Integrador - UTN FRH
 
 ---
 
-## 📄 Template Original: React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Desarrollado con ❤️ para la comunidad de Buenos Aires**

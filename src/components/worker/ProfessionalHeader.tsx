@@ -19,7 +19,7 @@ export function ProfessionalHeader({ professional }: ProfessionalHeaderProps) {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-6">
       <div className="flex flex-col md:flex-row gap-6">
-        {/* Imagen de perfil */}
+        {}
         <div className="flex-shrink-0">
           <img
             src={`https://ui-avatars.com/api/?name=${encodeURIComponent(professional.nombre)}&size=200&background=DBA668&color=fff`}
@@ -28,7 +28,7 @@ export function ProfessionalHeader({ professional }: ProfessionalHeaderProps) {
           />
         </div>
 
-        {/* Información principal */}
+        {}
         <div className="flex-1">
           <div className="flex items-start justify-between gap-4 mb-3">
             <div>
@@ -51,7 +51,7 @@ export function ProfessionalHeader({ professional }: ProfessionalHeaderProps) {
             )}
           </div>
 
-          {/* Estadísticas */}
+          {}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
             <div className="flex items-center gap-2">
               <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
@@ -85,7 +85,7 @@ export function ProfessionalHeader({ professional }: ProfessionalHeaderProps) {
             )}
           </div>
 
-          {/* Oficios/Especialidades */}
+          {}
           {prof?.oficios && prof.oficios.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {prof.oficios.map((oficio) => (

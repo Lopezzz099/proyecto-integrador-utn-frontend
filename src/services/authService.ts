@@ -1,7 +1,7 @@
 import { api, ENDPOINTS } from './api'
 import type { ApiResponse, LoginData, DecodedToken } from './types'
 
-// Decodificar JWT (sin verificar - solo lectura del payload)
+
 export const decodeToken = (token: string): DecodedToken | null => {
   try {
     const base64Url = token.split('.')[1]
@@ -33,7 +33,7 @@ export const login = async (loginData: LoginData): Promise<string> => {
     
     const token = response.data.body
     
-    // Guardar token en localStorage
+    
     localStorage.setItem('token', token)
     
     return token
@@ -43,13 +43,13 @@ export const login = async (loginData: LoginData): Promise<string> => {
   }
 }
 
-// Logout
+
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
 }
 
-// Verificar si hay un token válido
+
 export const isAuthenticated = (): boolean => {
   const token = localStorage.getItem('token')
   if (!token) return false
@@ -57,17 +57,17 @@ export const isAuthenticated = (): boolean => {
   const decoded = decodeToken(token)
   if (!decoded) return false
   
-  // Verificar si el token no ha expirado
+  
   const now = Date.now() / 1000
   return decoded.exp > now
 }
 
-// Obtener el token actual
+
 export const getToken = (): string | null => {
   return localStorage.getItem('token')
 }
 
-// Obtener información del token decodificado
+
 export const getDecodedToken = (): DecodedToken | null => {
   const token = getToken()
   if (!token) return null

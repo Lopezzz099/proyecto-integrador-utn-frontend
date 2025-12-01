@@ -18,7 +18,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <div className="min-h-screen bg-[#EEEEEE]">
-      {/* Header */}
+      {}
       <header className="bg-[#1F1F1F] text-white shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -40,7 +40,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </div>
       </header>
 
-      {/* Main content */}
+      {}
       <main className="p-4 sm:p-6 lg:p-8">
         {children}
       </main>

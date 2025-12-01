@@ -51,9 +51,9 @@ export function WorkerCard({ worker, onViewProfile, onContact }: WorkerCardProps
     <Card className="hover:shadow-lg transition-shadow duration-300">
       <CardContent className="p-6">
         <div className="flex gap-6">
-          {/* Información principal */}
+          {}
           <div className="flex-1 min-w-0">
-            {/* Header con nombre, verificación y estado */}
+            {}
             <div className="flex items-start justify-between gap-2 mb-3">
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-bold text-[#1F1F1F]">{worker.name}</h3>
@@ -69,7 +69,7 @@ export function WorkerCard({ worker, onViewProfile, onContact }: WorkerCardProps
               </div>
             </div>
 
-            {/* Rating con estrellas */}
+            {}
             <div className="flex items-center gap-2 mb-3">
               <div className="flex items-center gap-1">
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -91,7 +91,7 @@ export function WorkerCard({ worker, onViewProfile, onContact }: WorkerCardProps
               </span>
             </div>
 
-            {/* Ubicaciones */}
+            {}
             <div className="mb-3">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-gray-600 mt-0.5 flex-shrink-0" />
@@ -112,7 +112,7 @@ export function WorkerCard({ worker, onViewProfile, onContact }: WorkerCardProps
               </div>
             </div>
 
-            {/* Especialidades/Oficios */}
+            {}
             <div className="mb-3">
               <p className="text-sm font-semibold text-gray-700 mb-2">Especialidades:</p>
               <div className="flex flex-wrap gap-2">
@@ -131,14 +131,14 @@ export function WorkerCard({ worker, onViewProfile, onContact }: WorkerCardProps
               </div>
             </div>
 
-            {/* Disponibilidad */}
+            {}
             <div className="mb-4 p-3 bg-gray-50 rounded-lg">
               <p className="text-sm text-gray-600">
                 <span className="font-semibold text-gray-700">Disponibilidad:</span> {worker.disponibilidad}
               </p>
             </div>
 
-            {/* Botones de acción */}
+            {}
             <div className="flex gap-2">
               <Button
                 onClick={() => onViewProfile(worker.id)}

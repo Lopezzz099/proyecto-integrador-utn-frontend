@@ -1,7 +1,7 @@
-// API de GeoRef Argentina - Datos abiertos del gobierno
+
 const GEOREF_API_BASE = 'https://apis.datos.gob.ar/georef/api'
 
-// Provincia de Buenos Aires (código 06)
+
 const BUENOS_AIRES_PROVINCIA = '06'
 
 export interface Municipio {
@@ -27,7 +27,7 @@ export interface GeoRefResponse<T> {
   municipios?: T[]
 }
 
-// Obtener municipios de Buenos Aires
+
 export const getMunicipios = async (nombre?: string): Promise<Municipio[]> => {
   try {
     const params = new URLSearchParams({
@@ -47,7 +47,7 @@ export const getMunicipios = async (nombre?: string): Promise<Municipio[]> => {
   }
 }
 
-// Obtener localidades de Buenos Aires filtradas por municipio
+
 export const getLocalidades = async (
   municipio?: string,
   nombre?: string
@@ -71,7 +71,7 @@ export const getLocalidades = async (
   }
 }
 
-// Buscar municipios con autocompletado (primeros 5 resultados)
+
 export const searchMunicipios = async (query: string): Promise<Municipio[]> => {
   if (!query || query.length < 2) return []
 
@@ -93,7 +93,7 @@ export const searchMunicipios = async (query: string): Promise<Municipio[]> => {
   }
 }
 
-// Buscar localidades con autocompletado (primeros 5 resultados)
+
 export const searchLocalidades = async (
   municipioId: string,
   query: string

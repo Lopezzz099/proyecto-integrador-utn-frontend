@@ -49,7 +49,7 @@ export function ProfessionalProfilePage() {
       return
     }
     
-    // Limpiar el número de teléfono (remover espacios, guiones, etc.)
+    
     const phoneNumber = professional.telefono.replace(/\D/g, '')
     
     // Mensaje predeterminado
@@ -75,7 +75,7 @@ export function ProfessionalProfilePage() {
         usuario_id: user.id,
       })
 
-      // Cerrar modal y recargar la página
+      
       setShowCommentModal(false)
       window.location.reload()
     } catch (error: any) {
@@ -115,7 +115,7 @@ export function ProfessionalProfilePage() {
   return (
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
-        {/* Header con botones de acción */}
+        {}
         <div className="flex items-center justify-between mb-6">
           <Button
             onClick={() => navigate('/dashboard')}
@@ -134,11 +134,11 @@ export function ProfessionalProfilePage() {
           </Button>
         </div>
 
-        {/* Perfil del profesional */}
+        {}
         <ProfessionalHeader professional={professional} />
         <ProfessionalInfo professional={professional} />
 
-        {/* Comentarios */}
+        {}
         <div className="mt-6 bg-white rounded-lg shadow-md p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-xl font-bold text-[#1F1F1F] flex items-center gap-2">
@@ -189,7 +189,7 @@ export function ProfessionalProfilePage() {
         </div>
       </div>
 
-      {/* Modal para agregar comentario */}
+      {}
       {user && professional && (
         <AddCommentModal
           isOpen={showCommentModal}

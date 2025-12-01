@@ -34,12 +34,12 @@ export function AutocompleteInput({
   const wrapperRef = useRef<HTMLDivElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // Actualizar input cuando cambia el value desde afuera
+  
   useEffect(() => {
     setInputValue(value)
   }, [value])
 
-  // Cerrar dropdown al hacer click fuera
+  
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
@@ -54,7 +54,7 @@ export function AutocompleteInput({
   const handleInputChange = async (newValue: string) => {
     setInputValue(newValue)
     
-    // Si se borra todo, limpiar selección
+    
     if (!newValue) {
       onSelect(null)
       setOptions([])
@@ -62,7 +62,7 @@ export function AutocompleteInput({
       return
     }
 
-    // Debounce: esperar 300ms después de que el usuario deje de escribir
+    
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
     }
@@ -141,7 +141,7 @@ export function AutocompleteInput({
         </div>
       </div>
 
-      {/* Dropdown de opciones */}
+      {}
       {isOpen && options.length > 0 && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
           {options.map((option) => (
@@ -157,14 +157,14 @@ export function AutocompleteInput({
         </div>
       )}
 
-      {/* Mensaje de "no hay resultados" */}
+      {}
       {isOpen && !isLoading && inputValue.length >= 2 && options.length === 0 && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg p-4">
           <p className="text-sm text-gray-500 text-center">No se encontraron resultados</p>
         </div>
       )}
 
-      {/* Mensaje de error */}
+      {}
       {error && (
         <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
           <span>⚠️</span>
@@ -172,7 +172,7 @@ export function AutocompleteInput({
         </p>
       )}
       
-      {/* Ayuda contextual */}
+      {}
       {!disabled && inputValue.length < 2 && inputValue.length > 0 && (
         <p className="text-gray-500 text-xs mt-1">Escribe al menos 2 caracteres para buscar</p>
       )}

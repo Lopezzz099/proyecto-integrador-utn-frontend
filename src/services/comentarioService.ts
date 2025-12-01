@@ -1,7 +1,7 @@
 import { api, ENDPOINTS } from './api'
 import type { ApiResponse } from './types'
 
-// Datos para crear un comentario
+
 export interface CreateComentarioData {
   comentario: string
   estrellas: number
@@ -9,7 +9,7 @@ export interface CreateComentarioData {
   usuario_id: number
 }
 
-// Crear un comentario
+
 export const createComentario = async (
   comentarioData: CreateComentarioData
 ): Promise<void> => {

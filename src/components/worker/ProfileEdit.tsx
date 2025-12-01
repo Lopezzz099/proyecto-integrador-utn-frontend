@@ -140,7 +140,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               </div>
             </div>
 
-            {/* Descripción */}
+            {}
             <div>
               <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
                 Descripción profesional
@@ -154,7 +154,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               />
             </div>
 
-            {/* Especialidades */}
+            {}
             <div>
               <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
                 Especialidades
@@ -195,7 +195,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               </div>
             </div>
 
-            {/* Información profesional */}
+            {}
             <div className="grid md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
@@ -241,7 +241,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               </div>
             </div>
 
-            {/* Ubicación */}
+            {}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
@@ -274,7 +274,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               </div>
             </div>
 
-            {/* Horario */}
+            {}
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
@@ -309,7 +309,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               </div>
             </div>
 
-            {/* Certificaciones */}
+            {}
             <div>
               <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
                 Certificaciones
@@ -350,7 +350,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               </div>
             </div>
 
-            {/* Idiomas */}
+            {}
             <div>
               <label className="block text-sm font-semibold text-[#1F1F1F] mb-2">
                 Idiomas
@@ -391,7 +391,7 @@ export function ProfileEdit({ profile, onSave, onCancel }: ProfileEditProps) {
               </div>
             </div>
 
-            {/* Botones */}
+            {}
             <div className="flex gap-4 pt-4">
               <Button
                 type="submit"

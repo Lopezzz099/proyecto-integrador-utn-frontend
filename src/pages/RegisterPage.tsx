@@ -137,7 +137,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
       return
     }
 
-    // Validación final antes de enviar
+    
     if (!formData.name || !formData.lastName || !formData.email || !formData.phone || 
         !formData.municipio || !formData.localidad || !formData.password) {
       setErrors({
@@ -157,7 +157,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
 
     setIsLoading(true)
     try {
-      // Preparar datos para el backend
+      
       const registerData = {
         nombre: `${formData.name} ${formData.lastName}`,
         email: formData.email,
@@ -171,7 +171,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
         },
       }
 
-      // Si es profesional, agregar datos adicionales
+      
       if (selectedRole === 'provider') {
         Object.assign(registerData, {
           oficios: formData.skills,
@@ -180,7 +180,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
 
       console.log('Enviando datos de registro:', registerData)
       await register(registerData)
-      // Redirigir al dashboard después del registro exitoso
+      
       navigate('/dashboard')
     } catch (error: any) {
       console.error('Error en registro:', error)
@@ -219,7 +219,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
 
       <ProgressBar currentStep={step} totalSteps={getTotalSteps()} />
 
-      {/* Alerta de error general */}
+      {}
       {errors.general && (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
@@ -230,7 +230,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
         </div>
       )}
 
-      {/* Step Contents */}
+      {}
       {step === 1 && (
         <Step1Content
           name={formData.name}

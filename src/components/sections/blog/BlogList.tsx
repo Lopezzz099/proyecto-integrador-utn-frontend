@@ -13,7 +13,7 @@ export function BlogList() {
               key={post.id}
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
-              {/* Image */}
+              {}
               <div 
                 onClick={() => navigate(`/blog/${post.id}`)}
                 className="w-full h-48 bg-gray-300 overflow-hidden cursor-pointer"
@@ -25,16 +25,16 @@ export function BlogList() {
                 />
               </div>
 
-              {/* Content */}
+              {}
               <div className="p-6">
-                {/* Category */}
+                {}
                 <div className="mb-3">
                   <span className="inline-block bg-[#DBA668] text-[#1F1F1F] px-3 py-1 rounded-full text-sm font-semibold">
                     {post.category}
                   </span>
                 </div>
 
-                {/* Title */}
+                {}
                 <h3 
                   onClick={() => navigate(`/blog/${post.id}`)}
                   className="text-xl font-bold text-[#1F1F1F] mb-3 line-clamp-2 hover:text-[#DBA668] cursor-pointer transition-colors"
@@ -42,18 +42,18 @@ export function BlogList() {
                   {post.title}
                 </h3>
 
-                {/* Excerpt */}
+                {}
                 <p className="text-gray-700 mb-4 line-clamp-2 text-sm">
                   {post.excerpt}
                 </p>
 
-                {/* Meta */}
+                {}
                 <div className="flex items-center justify-between text-xs text-gray-500 mb-4 pb-4 border-b border-gray-200">
                   <span>{post.date}</span>
                   <span>{post.author}</span>
                 </div>
 
-                {/* Read More Button */}
+                {}
                 <Button
                   onClick={() => navigate(`/blog/${post.id}`)}
                   className="w-full bg-[#1F1F1F] hover:bg-[#DBA668] text-[#EEEEEE] hover:text-[#1F1F1F] font-bold py-2"
@@ -65,7 +65,7 @@ export function BlogList() {
           ))}
         </div>
 
-        {/* Load More Button */}
+        {}
         <div className="mt-16 text-center">
           <Button
             onClick={() => navigate('/contact')}

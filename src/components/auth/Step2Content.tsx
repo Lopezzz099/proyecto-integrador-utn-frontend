@@ -84,7 +84,7 @@ export function Step2Content({
         {renderErrorMessage('phone')}
       </div>
 
-      {/* Municipio */}
+      {}
       <AutocompleteInput
         label={selectedRole === 'client' ? 'Municipio' : 'Municipio de Cobertura'}
         value={municipio}
@@ -95,7 +95,7 @@ export function Step2Content({
         selectedId={municipioId}
       />
 
-      {/* Localidad - solo se habilita si hay municipio seleccionado */}
+      {}
       <AutocompleteInput
         label={selectedRole === 'client' ? 'Localidad' : 'Localidad de Cobertura'}
         value={localidad}

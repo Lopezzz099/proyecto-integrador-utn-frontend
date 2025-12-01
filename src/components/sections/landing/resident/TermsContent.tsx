@@ -6,7 +6,7 @@ export function TermsContent() {
   return (
     <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Introduction */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">1. Introducción</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -16,7 +16,7 @@ export function TermsContent() {
           </p>
         </div>
 
-        {/* Definitions */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">2. Definiciones</h2>
           <ul className="space-y-4 text-lg text-gray-700">
@@ -35,7 +35,7 @@ export function TermsContent() {
           </ul>
         </div>
 
-        {/* User Responsibilities */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">3. Responsabilidades del Usuario</h2>
           <ul className="space-y-3 text-lg text-gray-700 list-disc list-inside">
@@ -48,7 +48,7 @@ export function TermsContent() {
           </ul>
         </div>
 
-        {/* Services Description */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">4. Descripción de Servicios</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -61,7 +61,7 @@ export function TermsContent() {
           </p>
         </div>
 
-        {/* Payment Terms */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">5. Términos de Pago</h2>
           <ul className="space-y-3 text-lg text-gray-700 list-disc list-inside">
@@ -72,7 +72,7 @@ export function TermsContent() {
           </ul>
         </div>
 
-        {/* Limitation of Liability */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">6. Limitación de Responsabilidad</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -82,7 +82,7 @@ export function TermsContent() {
           </p>
         </div>
 
-        {/* Modification */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">7. Modificación de Términos</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -91,7 +91,7 @@ export function TermsContent() {
           </p>
         </div>
 
-        {/* Contact */}
+        {}
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668]">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">8. Contacto</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-6">
