@@ -181,12 +181,6 @@ export function WorkerDashboardPage() {
     }
   }
 
-  const updateUbicacion = (index: number, field: string, value: any) => {
-    const newUbicaciones = [...ubicaciones]
-    newUbicaciones[index] = { ...newUbicaciones[index], [field]: value }
-    setUbicaciones(newUbicaciones)
-  }
-
   const needsCompletion = !professionalData?.profesional?.descripcion || 
                           !professionalData?.profesional?.disponibilidad ||
                           !professionalData?.profesional?.ubicaciones ||
