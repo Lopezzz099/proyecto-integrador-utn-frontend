@@ -53,7 +53,7 @@ export function ProfessionalProfilePage() {
     const phoneNumber = professional.telefono.replace(/\D/g, '')
     
     // Mensaje predeterminado
-    const message = `Hola ${professional.nombre}, te contacto desde OferTu. Me gustaría solicitar información sobre tus servicios.`
+    const message = `Hola ${professional.nombre}, te contacto desde ManosLibres. Me gustaría solicitar información sobre tus servicios.`
     
     // Crear URL de WhatsApp
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

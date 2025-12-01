@@ -8,7 +8,7 @@ interface FAQItem {
 export function FAQ() {
   const faqItems: FAQItem[] = [
     {
-      question: '¿Es seguro usar OferTu?',
+      question: '¿Es seguro usar ManosLibres?',
       answer:
         'Sí. Todos los profesionales pasan por un proceso de verificación y sus perfiles incluyen calificaciones de clientes anteriores. Además, cuentas con reseñas y comentarios de otros usuarios.',
     },

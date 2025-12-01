@@ -212,7 +212,7 @@ export function RegisterPage({ initialRole }: RegisterPageProps) {
   }
 
   return (
-    <AuthContainer title="OferTu" subtitle="Crea tu cuenta">
+    <AuthContainer title="ManosLibres" subtitle="Crea tu cuenta">
       {step === 1 && (
         <RoleSelector selectedRole={selectedRole} onRoleChange={setSelectedRole} />
       )}

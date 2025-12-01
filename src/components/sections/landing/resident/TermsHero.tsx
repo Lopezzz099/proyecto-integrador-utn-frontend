@@ -4,7 +4,7 @@ export function TermsHero() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-5xl font-bold mb-6">Términos de Servicio</h1>
         <p className="text-xl opacity-90">
-          Lee nuestros términos y condiciones para usar OferTu
+          Lee nuestros términos y condiciones para usar ManosLibres
         </p>
       </div>
     </section>

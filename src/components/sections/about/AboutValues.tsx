@@ -9,7 +9,7 @@ export function AboutValues() {
             <div className="text-5xl mb-4">🤝</div>
             <h3 className="text-xl font-bold mb-3 text-[#1F1F1F]">Confianza</h3>
             <p className="text-gray-700">
-              La confianza es el pilar fundamental de OferTu. Nos comprometemos a verificar y validar
+              La confianza es el pilar fundamental de ManosLibres. Nos comprometemos a verificar y validar
               cada profesional en nuestra plataforma.
             </p>
           </div>

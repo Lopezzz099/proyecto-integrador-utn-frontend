@@ -10,8 +10,8 @@ export function TermsContent() {
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">1. Introducción</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Bienvenido a OferTu. Estos Términos de Servicio ("Términos") regulan el acceso y uso de la plataforma OferTu, 
-            incluido nuestro sitio web, aplicación móvil y todos los servicios relacionados. Al acceder o utilizar OferTu, 
+            Bienvenido a ManosLibres. Estos Términos de Servicio ("Términos") regulan el acceso y uso de la plataforma ManosLibres, 
+            incluido nuestro sitio web, aplicación móvil y todos los servicios relacionados. Al acceder o utilizar ManosLibres, 
             aceptas estar vinculado por estos Términos. Si no estás de acuerdo con alguna parte, te pedimos que no uses nuestros servicios.
           </p>
         </div>
@@ -21,7 +21,7 @@ export function TermsContent() {
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">2. Definiciones</h2>
           <ul className="space-y-4 text-lg text-gray-700">
             <li>
-              <strong className="text-[#1F1F1F]">Usuario:</strong> Cualquier persona que acceda o utilice la plataforma OferTu.
+              <strong className="text-[#1F1F1F]">Usuario:</strong> Cualquier persona que acceda o utilice la plataforma ManosLibres.
             </li>
             <li>
               <strong className="text-[#1F1F1F]">Residente:</strong> Usuario que busca servicios profesionales a través de la plataforma.
@@ -52,7 +52,7 @@ export function TermsContent() {
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">4. Descripción de Servicios</h2>
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            OferTu es una plataforma que conecta Residentes con Profesionales. No somos un empleador ni empleado de ninguno de nuestros usuarios. 
+            ManosLibres es una plataforma que conecta Residentes con Profesionales. No somos un empleador ni empleado de ninguno de nuestros usuarios. 
             Actuamos como intermediario para facilitar transacciones entre partes independientes.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -67,8 +67,8 @@ export function TermsContent() {
           <ul className="space-y-3 text-lg text-gray-700 list-disc list-inside">
             <li>Los precios y tarifas están disponibles en el sitio web y pueden cambiar sin previo aviso.</li>
             <li>Los pagos deben realizarse a través de los métodos especificados en la plataforma.</li>
-            <li>OferTu no es responsable por disputas de pago entre Residentes y Profesionales.</li>
-            <li>Se aplican comisiones según la política de comisiones de OferTu.</li>
+            <li>ManosLibres no es responsable por disputas de pago entre Residentes y Profesionales.</li>
+            <li>Se aplican comisiones según la política de comisiones de ManosLibres.</li>
           </ul>
         </div>
 
@@ -86,8 +86,8 @@ export function TermsContent() {
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">7. Modificación de Términos</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            OferTu se reserva el derecho de modificar estos Términos en cualquier momento. Los cambios entrarán en vigor inmediatamente 
-            después de su publicación en la plataforma. Tu uso continuado de OferTu constituye la aceptación de los Términos modificados.
+            ManosLibres se reserva el derecho de modificar estos Términos en cualquier momento. Los cambios entrarán en vigor inmediatamente 
+            después de su publicación en la plataforma. Tu uso continuado de ManosLibres constituye la aceptación de los Términos modificados.
           </p>
         </div>
 

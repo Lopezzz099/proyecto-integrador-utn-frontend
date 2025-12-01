@@ -9,7 +9,7 @@ export function AboutStory() {
           <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668]">
             <h3 className="text-2xl font-bold mb-4 text-[#1F1F1F]">Un Proyecto Familiar</h3>
             <p className="text-lg text-gray-700 leading-relaxed">
-              OferTu nació como una idea que surgió en el seno familiar, pensada para resolver un problema
+              ManosLibres nació como una idea que surgió en el seno familiar, pensada para resolver un problema
               que veíamos a diario en nuestro barrio. Lo que comenzó como una simple conversación entre familiares
               sobre cómo mejorar las cosas, se convirtió en una visión clara: crear una plataforma confiable
               donde los residentes pudieran conectar con profesionales de verdadera confianza.
@@ -49,7 +49,7 @@ export function AboutStory() {
               y confiables. No queríamos que otros pasaran por lo mismo que nosotros.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed mt-4">
-              Por eso nació OferTu: una plataforma pensada para crear un puente de confianza entre quienes
+              Por eso nació ManosLibres: una plataforma pensada para crear un puente de confianza entre quienes
               buscan servicios de calidad y quienes están capacitados para ofrecerlos. Queremos que cada trabajo
               se complete como se promete, que cada residente encuentre a profesionales de verdad confiables,
               y que los trabajadores honestos sean reconocidos y valorados por su dedicación.

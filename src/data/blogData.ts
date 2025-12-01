@@ -15,12 +15,12 @@ export const blogPosts: BlogPost[] = [
     title: "Cómo elegir el profesional indicado para tu proyecto",
     excerpt: "Descubre los mejores consejos para seleccionar al profesional perfecto que se adapte a tus necesidades.",
     date: "15 Nov 2025",
-    author: "OferTu Team",
+    author: "ManosLibres Team",
     category: "Consejos",
     image: "https://via.placeholder.com/400x300?text=Elegir+Profesional",
     content: `
       <h2>La importancia de elegir bien</h2>
-      <p>Elegir al profesional correcto puede marcar la diferencia entre un proyecto exitoso y una experiencia frustrante. En OferTu, queremos ayudarte a tomar la mejor decisión.</p>
+      <p>Elegir al profesional correcto puede marcar la diferencia entre un proyecto exitoso y una experiencia frustrante. En ManosLibres, queremos ayudarte a tomar la mejor decisión.</p>
       
       <h2>1. Revisa las calificaciones y reseñas</h2>
       <p>Las opiniones de otros usuarios son una excelente forma de conocer la calidad del trabajo de un profesional. Lee detenidamente las reseñas y presta atención a comentarios recurrentes.</p>
@@ -65,7 +65,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 3,
-    title: "Historias de éxito: Emprendedores en OferTu",
+    title: "Historias de éxito: Emprendedores en ManosLibres",
     excerpt: "Conoce las inspiradoras historias de profesionales que han crecido usando nuestra plataforma.",
     date: "8 Nov 2025",
     author: "Juan Pérez",
@@ -73,13 +73,13 @@ export const blogPosts: BlogPost[] = [
     image: "https://via.placeholder.com/400x300?text=Historias+Exito",
     content: `
       <h2>De principiante a experto reconocido</h2>
-      <p>Hoy queremos compartir la historia de Roberto, un electricista que transformó su negocio gracias a OferTu.</p>
+      <p>Hoy queremos compartir la historia de Roberto, un electricista que transformó su negocio gracias a ManosLibres.</p>
       
       <h2>Los inicios</h2>
       <p>Roberto empezó como ayudante de electricista hace 10 años. Después de completar su formación, decidió independizarse, pero conseguir clientes era un desafío constante.</p>
       
       <h2>El descubrimiento</h2>
-      <p>Un amigo le recomendó registrarse en OferTu. Al principio era escéptico, pero decidió intentarlo. Creó un perfil profesional, subió fotos de sus trabajos y comenzó a recibir solicitudes.</p>
+      <p>Un amigo le recomendó registrarse en ManosLibres. Al principio era escéptico, pero decidió intentarlo. Creó un perfil profesional, subió fotos de sus trabajos y comenzó a recibir solicitudes.</p>
       
       <h2>El crecimiento</h2>
       <p>En su primer mes, Roberto completó 5 trabajos. Las reseñas positivas comenzaron a llegar y, con ellas, más clientes. Hoy, 2 años después, tiene una agenda llena con 3 meses de anticipación.</p>
@@ -91,14 +91,14 @@ export const blogPosts: BlogPost[] = [
   {
     id: 4,
     title: "Seguridad y confianza en transacciones online",
-    excerpt: "Todo lo que necesitas saber sobre cómo protegemos tus pagos en OferTu.",
+    excerpt: "Todo lo que necesitas saber sobre cómo protegemos tus pagos en ManosLibres.",
     date: "5 Nov 2025",
-    author: "OferTu Team",
+    author: "ManosLibres Team",
     category: "Seguridad",
     image: "https://via.placeholder.com/400x300?text=Seguridad+Online",
     content: `
       <h2>Tu seguridad es nuestra prioridad</h2>
-      <p>En OferTu, implementamos múltiples capas de seguridad para proteger tus transacciones y datos personales.</p>
+      <p>En ManosLibres, implementamos múltiples capas de seguridad para proteger tus transacciones y datos personales.</p>
       
       <h2>Encriptación de extremo a extremo</h2>
       <p>Todos los datos sensibles, especialmente información de pago, están protegidos con encriptación SSL/TLS de última generación. Esto significa que tus datos viajan seguros desde tu dispositivo hasta nuestros servidores.</p>
@@ -169,7 +169,7 @@ export const blogPosts: BlogPost[] = [
       <p>Muchos profesionales comparten tips y enseñan pequeños trucos a sus clientes. Esta transferencia de conocimiento empodera a las personas.</p>
       
       <h2>Apoyo mutuo</h2>
-      <p>En OferTu hemos visto cómo los profesionales se recomiendan entre sí, creando redes de apoyo que benefician a toda la comunidad.</p>
+      <p>En ManosLibres hemos visto cómo los profesionales se recomiendan entre sí, creando redes de apoyo que benefician a toda la comunidad.</p>
       
       <h2>Historias inspiradoras</h2>
       <p>Cada profesional tiene una historia única. Compartir estas historias inspira a otros a perseguir sus sueños y valorar el trabajo bien hecho.</p>

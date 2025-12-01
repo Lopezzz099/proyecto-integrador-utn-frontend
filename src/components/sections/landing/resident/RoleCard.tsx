@@ -38,7 +38,7 @@ export function RoleCard({
       </div>
 
       <div className="mb-8">
-        <h4 className="text-lg font-semibold text-[#DBA668] mb-4">¿Por qué usar OferTu?</h4>
+        <h4 className="text-lg font-semibold text-[#DBA668] mb-4">¿Por qué usar ManosLibres?</h4>
         <p className="text-gray-700">{description}</p>
       </div>
 

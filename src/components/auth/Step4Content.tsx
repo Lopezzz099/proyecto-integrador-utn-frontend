@@ -75,7 +75,7 @@ export function Step4Content({
           required
         />
         <label htmlFor="terms" className="ml-2 text-xs text-gray-600">
-          Acepto los términos y condiciones de OferTu
+          Acepto los términos y condiciones de ManosLibres
         </label>
       </div>
     </div>

@@ -22,7 +22,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <header className="bg-[#1F1F1F] text-white shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-[#DBA668]">OferTu</h1>
+            <h1 className="text-2xl font-bold text-[#DBA668]">ManosLibres</h1>
           </div>
           <div className="flex items-center gap-4">
             <span className="hidden sm:block text-sm">Bienvenido, {user?.nombre || 'Usuario'}</span>

@@ -11,7 +11,7 @@ export function Footer({ onRoleChange }: FooterProps) {
     <footer className="bg-[#1F1F1F] text-[#EEEEEE] py-12 px-4">
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 mb-8">
         <div>
-          <h4 className="font-bold text-lg mb-4 text-[#DBA668]">OferTu</h4>
+          <h4 className="font-bold text-lg mb-4 text-[#DBA668]">ManosLibres</h4>
           <p className="text-sm text-gray-400">
             Conectando residentes con profesionales en tu localidad
           </p>
@@ -86,7 +86,7 @@ export function Footer({ onRoleChange }: FooterProps) {
         </div>
       </div>
       <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
-        <p>&copy; 2025 OferTu. Todos los derechos reservados.</p>
+        <p>&copy; 2025 ManosLibres. Todos los derechos reservados.</p>
       </div>
     </footer>
   )

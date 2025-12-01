@@ -1,12 +1,12 @@
-# Ìø† OferTu - Plataforma de Servicios para el Hogar
+# ÔøΩÔøΩManosLibresTu - Plataforma de Servicios para el Hogar
 
 Aplicaci√≥n web para conectar residentes con profesionales de servicios del hogar en la provincia de Buenos Aires, Argentina.
 
-## Ì≥ã Descripci√≥n del Proyecto
+## ÔøΩÔøΩÔøΩ Descripci√≥n del Proyecto
 
-OferTu es una plataforma que facilita la conexi√≥n entre personas que necesitan servicios para el hogar y profesionales capacitados. Los usuarios pueden buscar y filtrar profesionales por oficio y ubicaci√≥n, mientras que los profesionales pueden crear y gestionar sus perfiles.
+ManosLibres es una plataforma que facilita la conexi√≥n entre personas que necesitan servicios para el hogar y profesionales capacitados. Los usuarios pueden buscar y filtrar profesionales por oficio y ubicaci√≥n, mientras que los profesionales pueden crear y gestionar sus perfiles.
 
-## Ì∫Ä Inicio R√°pido
+## ÔøΩÔøΩÔøΩ Inicio R√°pido
 
 ```bash
 # Instalar dependencias
@@ -22,7 +22,7 @@ npm run dev
 npm run build
 ```
 
-## Ì≥ã Requisitos Previos
+## ÔøΩÔøΩÔøΩ Requisitos Previos
 
 - **Node.js** 16 o superior
 - **npm** o **yarn**
@@ -36,7 +36,7 @@ Crea un archivo `.env` en la ra√≠z del proyecto:
 VITE_API_BASE_URL=http://localhost:4000/api
 ```
 
-## Ìª†Ô∏è Tecnolog√≠as Utilizadas
+## ÔøΩÔøΩÔøΩÔ∏è Tecnolog√≠as Utilizadas
 
 ### Frontend
 - **React 19.1** - Biblioteca de UI
@@ -64,7 +64,7 @@ VITE_API_BASE_URL=http://localhost:4000/api
 - **TypeScript ESLint** - Reglas de ESLint para TypeScript
 - **PostCSS & Autoprefixer** - Procesamiento de CSS
 
-## Ìºê APIs Utilizadas
+## ÔøΩÔøΩÔøΩ APIs Utilizadas
 
 ### API Backend Propia
 **Base URL:** `http://localhost:4000/api`
@@ -108,7 +108,7 @@ Servicio de normalizaci√≥n de datos geogr√°ficos de Argentina (datos abiertos de
 - `max` - Cantidad m√°xima de resultados
 - `campos` - Campos a devolver
 
-## Ì≥Å Estructura del Proyecto
+## ÔøΩÔøΩÔøΩ Estructura del Proyecto
 
 ```
 proyecto-integrador-utn-frontend/
@@ -154,7 +154,7 @@ proyecto-integrador-utn-frontend/
 ‚îî‚îÄ‚îÄ tailwind.config.js          # Configuraci√≥n Tailwind
 ```
 
-## Ì¥ë Funcionalidades Principales
+## ÔøΩÔøΩÔøΩ Funcionalidades Principales
 
 ### Autenticaci√≥n y Registro
 - Sistema de login con JWT
@@ -214,7 +214,7 @@ Abre tu navegador en: `http://localhost:5173`
 3. Completar formulario + oficios
 4. Aceptar t√©rminos y condiciones
 
-## Ì¥í Seguridad
+## ÔøΩÔøΩÔøΩ Seguridad
 
 - Autenticaci√≥n mediante **JWT (JSON Web Tokens)**
 - Tokens almacenados en `localStorage`
@@ -223,21 +223,21 @@ Abre tu navegador en: `http://localhost:5173`
 - Validaci√≥n de datos con **Zod** antes de enviar al backend
 - Headers CORS configurados
 
-## Ì≥± Dise√±o Responsive
+## ÔøΩÔøΩÔøΩ Dise√±o Responsive
 
 - Dise√±o mobile-first
 - Adaptable a tablets y desktop
 - Componentes optimizados con Tailwind CSS
 - Navegaci√≥n adaptativa
 
-## Ìæ® Paleta de Colores
+## ÔøΩÔøΩÔøΩ Paleta de Colores
 
 - **Primario:** `#DBA668` (Dorado)
 - **Secundario:** `#1F1F1F` (Negro)
 - **Fondo:** `#FFFFFF` (Blanco)
 - **Texto:** `#333333` (Gris oscuro)
 
-## Ì≥¶ Scripts Disponibles
+## ÔøΩÔøΩÔøΩ Scripts Disponibles
 
 ```bash
 npm run dev          # Modo desarrollo (puerto 5173)
@@ -246,7 +246,7 @@ npm run preview      # Preview de build de producci√≥n
 npm run lint         # Ejecutar ESLint
 ```
 
-## Ì¥ù Integraci√≥n con Backend
+## ÔøΩÔøΩÔøΩ Integraci√≥n con Backend
 
 Ejemplo de uso de servicios:
 
@@ -280,7 +280,7 @@ import { searchMunicipios } from '@/services/georefService'
 const municipios = await searchMunicipios('San')
 ```
 
-## Ì≥Ñ Licencia
+## ÔøΩÔøΩÔøΩ Licencia
 
 Proyecto Integrador - UTN FRH
 

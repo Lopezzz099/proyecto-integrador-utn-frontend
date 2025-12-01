@@ -10,7 +10,7 @@ export function PrivacyContent() {
         <div className="bg-white p-8 rounded-lg shadow-md border-l-4 border-[#DBA668] mb-8">
           <h2 className="text-3xl font-bold mb-4 text-[#1F1F1F]">1. Introducción</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            En OferTu, respetamos tu privacidad y nos comprometemos a proteger tus datos personales. 
+            En ManosLibres, respetamos tu privacidad y nos comprometemos a proteger tus datos personales. 
             Esta Política de Privacidad explica cómo recopilamos, usamos, compartimos y protegemos tu información 
             cuando utilizas nuestra plataforma, incluido nuestro sitio web y aplicación móvil.
           </p>

@@ -17,7 +17,7 @@ export function Header({ currentRole, onRoleChange }: HeaderProps) {
             onClick={() => navigate('/')}
             className="text-2xl font-bold hover:text-[#DBA668] transition-colors cursor-pointer"
           >
-            OferTu
+            ManosLibres
           </button>
         </div>
         

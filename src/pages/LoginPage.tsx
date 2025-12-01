@@ -58,7 +58,7 @@ export function LoginPage({ initialRole }: LoginPageProps) {
   }
 
   return (
-    <AuthContainer title="OferTu" subtitle="Inicia sesión en tu cuenta">
+    <AuthContainer title="ManosLibres" subtitle="Inicia sesión en tu cuenta">
       <RoleSelector selectedRole={selectedRole} onRoleChange={setSelectedRole} />
       
       {}
@@ -92,7 +92,7 @@ export function LoginPage({ initialRole }: LoginPageProps) {
       {}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-6">
         <p className="text-xs font-semibold text-blue-900 mb-1">Demo - Credenciales de prueba:</p>
-        <p className="text-xs text-blue-700">Email: demo@ofertu.com</p>
+        <p className="text-xs text-blue-700">Email: demo@manoslibres.com</p>
         <p className="text-xs text-blue-700">Contraseña: demo123</p>
       </div>
 
