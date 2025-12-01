@@ -82,20 +82,6 @@ export function LoginPage({ initialRole }: LoginPageProps) {
         errors={errors}
       />
 
-      {}
-      <div className="flex items-center my-6">
-        <div className="flex-1 border-t border-gray-300"></div>
-        <span className="px-4 text-gray-500 text-sm">O</span>
-        <div className="flex-1 border-t border-gray-300"></div>
-      </div>
-
-      {}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-6">
-        <p className="text-xs font-semibold text-blue-900 mb-1">Demo - Credenciales de prueba:</p>
-        <p className="text-xs text-blue-700">Email: demo@manoslibres.com</p>
-        <p className="text-xs text-blue-700">Contraseña: demo123</p>
-      </div>
-
       <AuthLinks type="login" />
     </AuthContainer>
   )
